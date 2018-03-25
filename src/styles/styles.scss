@@ -1,0 +1,20 @@
+html{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+
+    body {
+        display: flex;
+        flex: 1;
+        flex-direction: column;    
+        font-family: Raleway;
+        margin: 0;
+        overflow: hidden;
+    
+        .spacer {
+            flex: 1 1 auto;
+        }
+    }
+}
