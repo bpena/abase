@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { CoreModule } from '@core/core.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CoreModule,
     MatCardModule
   ],
   providers: [],
