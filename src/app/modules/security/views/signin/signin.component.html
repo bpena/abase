@@ -1,3 +1,27 @@
-<p>
-  signin works!
-</p>
+<mat-card>
+  <div class="logo">
+    FCS
+  </div>
+  <div class="spacer"></div>
+  <form>
+    <mat-form-field class="full-width">
+      <mat-icon matPrefix>person</mat-icon>
+      <input matInput >
+    </mat-form-field>
+  
+    <mat-form-field class="full-width">
+      <mat-icon matPrefix>lock</mat-icon>
+      <input matInput >
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button class="full-width">Log In</button>
+    <span class="left full-width">
+      <a mat-button class="full-width" routerLink=".">Forgot Password?</a>
+    </span>
+  </form>
+  <div class="spacer"></div>
+  <span class="left full-width">
+      Don't have an account? <a mat-button routerLink=".">Create One</a>
+  </span>
+
+</mat-card>
