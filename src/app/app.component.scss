@@ -17,6 +17,9 @@
             padding-top: 5px;
 
             .mat-sidenav-content {
+                display: flex;
+                flex: 1;
+                flex-direction: column;
                 max-height: calc(100vh - 56px);
                 overflow: auto;
                 padding: 0 10px;
