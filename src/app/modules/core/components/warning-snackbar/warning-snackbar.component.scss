@@ -1,8 +1,18 @@
+@import '~styles/theme';  //  <-- the theme file shown above
+
 :host {
     .btn-close {
         position: absolute;
         right: 0;
         top: 0;
+    }
+
+    .error {
+        color: mat-color($app-warn, default);
+    }
+
+    .warning {
+        color: mat-color($app-primary, default);
     }
 
     .title {

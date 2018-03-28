@@ -1,7 +1,9 @@
 <button mat-icon-button (click)="close()" class="btn-close">
   <mat-icon aria-label="close button">close</mat-icon>
 </button>
-<h3 class="title">
+<h3 class="title" 
+  [class.error]="data.type === 0"  
+  [class.warning]="data.type === 1">
   <mat-icon>error</mat-icon>
   <span>{{ data.title }}</span>
 </h3>

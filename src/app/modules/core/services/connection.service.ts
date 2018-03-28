@@ -72,13 +72,12 @@ export class ConnectionService {
   }
 
   private handleSuccess(value: any, _this?: any): void {
-    console.log('handleSuccess: ', value);
   }
 
   private handleError(error: any, _this?: any): void {
     const message = `
       ${error.statusText} <br />
-      ${error.url}
+      <small>${error.url}</small>
     `;
     _this.snackBar.openFromComponent(WarningSnackbarComponent, {
       data: {
