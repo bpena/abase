@@ -3,7 +3,24 @@
     flex: 1;
     flex-direction: column;
 
-    mat-card {
-        overflow-y: scroll;
+    .container {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding-bottom: 5px;
+        
+        .sidenav-container {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            overflow: hidden;
+            padding-top: 5px;
+
+            .mat-sidenav-content {
+                max-height: calc(100vh - 56px);
+                overflow: auto;
+                padding: 0 10px;
+            }
+        }
     }
 }
