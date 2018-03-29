@@ -16,5 +16,14 @@ html{
         .spacer {
             flex: 1 1 auto;
         }
+
+        .full-width {
+            display: block;
+            width: 100%;
+        }
+
+        .mat-input-prefix {
+            margin-right: 5px;
+        }
     }
 }

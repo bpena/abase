@@ -1,0 +1,14 @@
+@import '~styles/functions';
+
+:host {
+    @include flex-column();
+    padding: 5px 10px 5px;
+
+    .mat-card {
+        @include flex-column();
+
+        .mat-form-field {
+            line-height: .9;
+        }
+    }
+}

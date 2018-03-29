@@ -1,0 +1,32 @@
+<mat-card>
+  <div class="logo">
+    FCS
+  </div>
+  <div class="spacer"></div>
+  <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width">
+      <mat-icon matPrefix>person</mat-icon>
+      <input type="text" matInput
+        formControlName="username"
+        #username>
+    </mat-form-field>
+  
+    <mat-form-field class="full-width">
+      <mat-icon matPrefix>lock</mat-icon>
+      <input type="password" matInput
+        formControlName="password"
+        #password>
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button 
+      class="full-width" color="primary">Log In</button>
+    <span class="left full-width">
+      <a mat-button class="full-width" routerLink=".">Forgot Password?</a>
+    </span>
+  </form>
+  <div class="spacer"></div>
+  <span class="left full-width">
+      Don't have an account? <a mat-button routerLink="../signup">Create One</a>
+  </span>
+
+</mat-card>

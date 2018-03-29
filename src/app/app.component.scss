@@ -1,28 +1,19 @@
+@import '~styles/functions';
+
 :host {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
+    @include flex-column();
 
     .container {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        padding-bottom: 5px;
+        @include flex-column();
         
         .sidenav-container {
-            display: flex;
-            flex: 1;
-            flex-direction: column;
+            @include flex-column();
             overflow: hidden;
-            padding-top: 5px;
 
             .mat-sidenav-content {
-                display: flex;
-                flex: 1;
-                flex-direction: column;
+                @include flex-column();
                 max-height: calc(100vh - 56px);
                 overflow: auto;
-                padding: 0 10px;
             }
         }
     }

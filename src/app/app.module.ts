@@ -5,12 +5,15 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from '@core/core.module';
+import { SecurityModule } from './modules/security/security.module';
+import { AppRouting } from './app.routing';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    AppRouting,
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
@@ -19,7 +22,8 @@ import { CoreModule } from '@core/core.module';
     MatIconModule,
     MatListModule,
     MatSidenavModule,
-    MatToolbarModule
+    MatToolbarModule,
+    SecurityModule
   ],
   providers: [],
   bootstrap: [AppComponent]
