@@ -23,12 +23,6 @@ html{
         .mat-input-prefix {
             margin-right: 5px;
         }
-            
-        .is-mobile {
-            .extend {
-                display: none !important;
-            }
-        }    
 
         .extend {
             flex: 3;
@@ -37,6 +31,18 @@ html{
         .form {
             @include flex-column();
             min-width: 360px;
+            overflow: scroll;
+        }
+            
+        .is-mobile {
+            .extend {
+                display: none !important;
+            }
+
+            .form {
+                @include flex-column();
+                min-width: initial;
+            }
         }
     }
 }
