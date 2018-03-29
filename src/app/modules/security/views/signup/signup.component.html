@@ -3,29 +3,47 @@
 </mat-card>
 <mat-card class="form">
   <h2>Sign up</h2>
-  <form>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="full-width">
-      <input type="text" matInput placeholder="Username">
+      <input type="text" matInput 
+        placeholder="Username"
+        formControlName="username"
+        #username>
     </mat-form-field>
 
     <mat-form-field class="full-width">
-      <input type="password" matInput placeholder="Password">
+      <input type="password" matInput
+        placeholder="Password"
+        formControlName="password"
+        #password>
     </mat-form-field>
     
     <mat-form-field class="full-width">
-      <input type="password" matInput placeholder="Confirm Password">
+      <input type="password" matInput 
+        placeholder="Confirm Password"
+        formControlName="confirmPassword"
+        #confirmPassword>
     </mat-form-field>
     
     <mat-form-field class="full-width">
-      <input type="text" matInput placeholder="Email">
+      <input type="text" matInput 
+        placeholder="Email"
+        formControlName="email"
+        #email>
     </mat-form-field>
     
     <mat-form-field class="full-width">
-      <input type="text" matInput placeholder="Firstname">
+      <input type="text" matInput 
+        placeholder="Firstname"
+        formControlName="firstname"
+        #firstname>
     </mat-form-field>
     
     <mat-form-field class="full-width">
-      <input type="text" matInput placeholder="Lastname">
+      <input type="text" matInput
+        placeholder="Lastname"
+        formControlName="lastname"
+        #lastname>
     </mat-form-field>
     
     <button type="submit" mat-raised-button class="full-width" color="primary">Sign up</button>
