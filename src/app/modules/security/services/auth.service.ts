@@ -7,15 +7,22 @@ import { ConnectionService } from '@core/services/connection.service';
 @Injectable()
 export class AuthService {
   private logged: BehaviorSubject<boolean>;  
-  private mock: Observable<Response> = Observable.create(observer => {
-    console.log('prueba');
+  private loginMock: Observable<Response> = Observable.create(observer => {
     const response: Response = new Response({} as ResponseOptions);
-    response.ok = false;
-    response.status = 404;
+    response.ok = true;
+    response.status = 200;
     response.statusText = 'todo OK';
 
-    console.log(response);
     this.logged.next(true);
+    observer.next(response);
+  });
+  private logoutMock: Observable<Response> = Observable.create(observer => {
+    const response: Response = new Response({} as ResponseOptions);
+    response.ok = true;
+    response.status = 200;
+    response.statusText = 'todo OK';
+
+    this.logged.next(false);
     observer.next(response);
   });
 
@@ -25,15 +32,15 @@ export class AuthService {
   }
 
   signin(): Observable<Response> {
-    return this.mock;
+    return this.loginMock;
   }
 
   signup() {
 
   }
 
-  logout() {
-    
+  logout(): Observable<Response> {
+   return this.logoutMock;
   }
 
   isLogged(): Observable<boolean> {
