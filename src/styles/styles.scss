@@ -32,6 +32,12 @@ html{
             @include flex-column();
             min-width: 360px;
             overflow: scroll;
+
+            a {
+                font-weight: bold;
+                min-width: initial;
+                padding: 0;
+            }
         }
             
         .is-mobile {
