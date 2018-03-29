@@ -1,13 +1,11 @@
+@import '~styles/functions';
+
 :host {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
+    @include flex-column();
     padding: 5px 10px 5px;
 
     .mat-card {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
+        @include flex-column();
 
         .mat-form-field {
             line-height: .9;
