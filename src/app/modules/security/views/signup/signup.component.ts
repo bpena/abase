@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { PasswordValidation } from '@core/utils/validators/password.validation';
 
 @Component({
   selector: 'app-signup',
@@ -23,7 +24,8 @@ export class SignupComponent implements OnInit {
       ]),
       firstname: new FormControl(null, Validators.required),
       lastname: new FormControl(null, Validators.required)
-    })
+    }, 
+    PasswordValidation.MatchPassword)
   }
 
 }

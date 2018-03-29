@@ -1,18 +1,16 @@
+@import '~styles/functions';
+
 html{
-    display: flex;
-    flex: 1;
-    flex-direction: column;
+    @include flex-column();
     height: 100%;
     overflow: hidden;
 
     body {
-        display: flex;
-        flex: 1;
-        flex-direction: column;    
+        @include flex-column();
         font-family: Raleway;
         margin: 0;
         overflow: hidden;
-    
+
         .spacer {
             flex: 1 1 auto;
         }
@@ -24,6 +22,21 @@ html{
 
         .mat-input-prefix {
             margin-right: 5px;
+        }
+            
+        .is-mobile {
+            .extend {
+                display: none !important;
+            }
+        }    
+
+        .extend {
+            flex: 3;
+        }
+
+        .form {
+            @include flex-column();
+            min-width: 360px;
         }
     }
 }
