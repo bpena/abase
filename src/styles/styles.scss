@@ -37,10 +37,6 @@ html{
         .form {
             @include flex-column();
             min-width: 360px;
-    
-            .mat-form-field {
-                line-height: .9;
-            }
         }
     }
 }

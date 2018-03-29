@@ -4,4 +4,8 @@
     @include flex-column();
     flex-direction: row-reverse;
     padding: 5px 10px 5px;
+
+    .mat-form-field {
+        line-height: .5;
+    }
 }
