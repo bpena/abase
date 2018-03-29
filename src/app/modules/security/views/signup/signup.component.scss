@@ -3,20 +3,4 @@
 :host {
     @include flex-row();
     padding: 5px 10px 5px;
-
-    .extend {
-        flex: 3;
-
-        .is-mobile & {
-            display: none;
-        }
-    }
-
-    .form {
-        @include flex-column();
-
-        .mat-form-field {
-            line-height: .9;
-        }
-    }
 }

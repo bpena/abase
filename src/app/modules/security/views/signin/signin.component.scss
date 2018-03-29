@@ -2,13 +2,6 @@
 
 :host {
     @include flex-column();
+    flex-direction: row-reverse;
     padding: 5px 10px 5px;
-
-    .mat-card {
-        @include flex-column();
-
-        .mat-form-field {
-            line-height: .9;
-        }
-    }
 }
