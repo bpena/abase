@@ -1,11 +1,11 @@
 <div class="container" [class.is-mobile]="mobileQuery.matches">
   <mat-toolbar>
     <mat-toolbar-row>
-      <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+      <button mat-icon-button *ngIf="isLogged | async" (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
       <h1 class="app-name">{{ title }}</h1>
       <span class="spacer"></span>
-      <mat-icon class="icon">verified_user</mat-icon>
-    </mat-toolbar-row>
   </mat-toolbar>
 
   <mat-sidenav-container class="sidenav-container">

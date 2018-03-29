@@ -1,5 +1,6 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { AuthService } from '@security/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 export class AppComponent {
   title = 'Fever Control System';
   mobileQuery: MediaQueryList;
+  isLogged: any;
 
   fillerNav = Array(5).fill(0).map((_, i) => `Nav Item ${i + 1}`);
 
@@ -21,10 +23,14 @@ export class AppComponent {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(private authService: AuthService,
+            private changeDetectorRef: ChangeDetectorRef,
+            private media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    this.isLogged = this.authService.isLogged();
   }
 
   ngOnDestroy(): void {
