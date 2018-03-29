@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { SecurityComponent } from './security.component';
 import { SecurityRouting } from './security.routing';
 import { SigninComponent } from './views/signin/signin.component';
+import { SignupComponent } from './views/signup/signup.component';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { SigninComponent } from './views/signin/signin.component';
   ],
   declarations: [
     SigninComponent,
-    SecurityComponent
+    SecurityComponent,
+    SignupComponent
   ]
 })
 export class SecurityModule { }
