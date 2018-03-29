@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SecurityComponent } from './security.component';
-import { SecurityRouting } from './security.routing';
-import { SigninComponent } from './views/signin/signin.component';
-import { SignupComponent } from './views/signup/signup.component';
+import { SignupComponent } from '@security/views/signup/signup.component';
+import { SecurityRouting } from '@security/security.routing';
+import { SigninComponent } from '@security/views/signin/signin.component';
+import { SecurityComponent } from '@security/security.component';
+import { AuthService } from '@security/services/auth.service';
 
 @NgModule({
   imports: [
@@ -23,6 +24,9 @@ import { SignupComponent } from './views/signup/signup.component';
     SigninComponent,
     SecurityComponent,
     SignupComponent
+  ],
+  providers: [
+    AuthService
   ]
 })
 export class SecurityModule { }
