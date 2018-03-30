@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { PasswordValidation } from '@core/utils/validators/password.validation';
+import { AuthService } from '@security/services/auth.service';
+import { Router } from '@angular/router';
+import { User } from '@security/model/user';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +14,8 @@ export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
 
-  constructor() { }
+  constructor(private authService: AuthService,
+            private router: Router) { }
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -28,4 +32,25 @@ export class SignupComponent implements OnInit {
     PasswordValidation.MatchPassword)
   }
 
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      const { username, password, firstname, lastname, email } = form.value;
+      const user: User = {
+        username,
+        password,
+        firstname,
+        lastname,
+        email
+      };
+      
+      this.authService.signup(user)
+        .subscribe(
+          value => {
+            console.log(value);
+            this.router.navigateByUrl('/security/signup');
+          },
+          error => console.log('signup ::: ', error)
+        );
+    }
+  }
 }
