@@ -1,41 +1,18 @@
 import express from 'express'
 import Debug from 'debug'
 import jwt from 'jsonwebtoken'
-import { required } from '../middlewares'
+import { secret } from '../config'
+import {
+    required,
+    users, 
+    loggedUsers,
+    findUserByUsername,
+    comparePasswords,
+    createToken
+} from '../middlewares'
 
 const app = express.Router()
 const debug = new Debug('server::auth-route')
-
-const secret = 'miclavesecreta'
-
-const users = [
-    {
-        _id: 1,
-        username: 'bpena',
-        firstname: 'Bernardo',
-        lastname: 'Peña',
-        email: 'bernardo.pena.ramos@gmail.com',
-        password: '123456',
-        createdAt: Date.now()
-    },
-    {
-        _id: 2,
-        username: 'bernardo.penar@hotmail.com',
-        firstname: 'Bernardo',
-        lastname: 'Peña',
-        email: 'bernardo.pena.ramos@gmail.com',
-        password: 'elcondenado',
-        createdAt: Date.now()
-    },
-]
-
-const loggedUsers = {}
-
-const findUserByUsername = uname => users.find(({ username }) => username === uname)
-
-const comparePasswords = (providedPassword, userPassword) => providedPassword === userPassword
-
-const createToken = (user) => jwt.sign({ user }, secret, { expiresIn: 3600 })
 
 app.get('/user', (req, res, next) => {
     debug(1)
