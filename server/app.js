@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 if (process.env.NODE_ENV === 'development') {
     app.use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*')
-        res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Request-With, Content-Type, Accept, Token')
+        res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Request-With, Content-Type, Accept, token')
         res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE OPTIONS')
         next()
     })
