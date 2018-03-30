@@ -7,11 +7,14 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw'
 import { WarningSnackbarType } from '@core/components/warning-snackbar/warning-snackbar-type.enum'
 import { WarningSnackbarComponent } from '@core/components/warning-snackbar/warning-snackbar.component';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ConnectionService {
 
-  constructor(private http: Http, public snackBar: MatSnackBar) { }
+  constructor(private http: Http, 
+            private router: Router,
+            public snackBar: MatSnackBar) { }
 
   private updateOptions(options: RequestOptionsArgs): RequestOptionsArgs {
     const token = localStorage.getItem('token');
@@ -95,5 +98,9 @@ export class ConnectionService {
       },
       duration: 15000
     });
+
+    if (error.redirectTo) {
+      this.router.navigateByUrl(error.redirectTo);
+    }
   }
 }
