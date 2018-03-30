@@ -31,7 +31,7 @@ html{
         .form {
             @include flex-column();
             min-width: 360px;
-            overflow: scroll;
+            overflow: auto;
 
             a {
                 font-weight: bold;
