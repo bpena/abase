@@ -1,7 +1,11 @@
 import express from 'express'
-import { user } from './routes'
+import bodyParser from 'body-parser'
+import { auth, user } from './routes'
 
 const app = express()
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 if (process.env.NODE_ENV === 'development') {
     app.use((req, res, next) => {
@@ -12,6 +16,7 @@ if (process.env.NODE_ENV === 'development') {
     })
 }
 
+app.use('/api/v1/auth', auth)
 app.use('/api/v1/user', user)
 
 export default app

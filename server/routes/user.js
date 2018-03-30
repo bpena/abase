@@ -1,6 +1,8 @@
 import express from 'express'
+import Debug from 'debug'
 
 const app = express.Router()
+const debug = new Debug('server::user-route')
 
 const user = {
     _id: 1,
@@ -15,7 +17,10 @@ const user = {
 const users = new Array(10).fill(user)
 
 // GET /api/v1/user
-app.get('/', (req, res) => res.status(200).json(users))
+app.get('/', (req, res) => {
+    debug(1)
+    res.status(200).json(users);
+})
 
 // GET /api/v1/user/:id
 app.get('/:id', (req, res) => res.status(200).json(user))

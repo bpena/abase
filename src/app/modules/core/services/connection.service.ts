@@ -3,6 +3,7 @@ import { Http, RequestOptionsArgs, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { MatSnackBar } from '@angular/material';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 import { WarningSnackbarType } from '@core/components/warning-snackbar/warning-snackbar-type.enum'
 import { WarningSnackbarComponent } from '@core/components/warning-snackbar/warning-snackbar.component';
@@ -13,62 +14,48 @@ export class ConnectionService {
   constructor(private http: Http, public snackBar: MatSnackBar) { }
 
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    const get$ = this.http.get(url, options)
-      .map(response => response.json());
-    
-    get$.subscribe(
-      value => this.handleSuccess(value, this),
-      error => this.handleError(error, this)
-    );
-    
-    return get$;
+    return this.http.get(url, options)
+      .map(response => response.json())
+      .catch((error: Response) => {
+        this.handleError(error, this);
+        return Observable.throw(error.json());
+      });
   }
 
   post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    const post$ = this.http.post(url, body, options)
-      .map(response => response.json());
-
-    post$.subscribe(
-      value => this.handleSuccess(value, this),
-      error => this.handleError(error, this)
-    );
-
-    return post$;
+    return this.http.post(url, body, options)
+      .map(response => response.json())
+      .catch((error: Response) => {
+        this.handleError(error, this);
+        return Observable.throw(error.json());
+      });
   }
 
   put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    const put$ = this.http.put(url, body, options)
-      .map(response => response.json());
-    
-    put$.subscribe(
-      value => this.handleSuccess(value, this),
-      error => this.handleError(error, this)
-    );
-    
-    return put$;
+    return this.http.put(url, body, options)
+      .map(response => response.json())
+      .catch((error: Response) => {
+        this.handleError(error, this);
+        return Observable.throw(error.json());
+      });
   }
 
   delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
-    const delete$ = this.http.delete(url, options);
-
-    delete$.subscribe(
-      value => this.handleSuccess(value, this),
-      error => this.handleError(error, this)
-    );
-
-    return delete$;
+    return this.http.delete(url, options)
+      .map(response => response.json())
+      .catch((error: Response) => {
+        this.handleError(error, this);
+        return Observable.throw(error.json());
+      });
   }
 
   patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
-    const patch$ = this.http.patch(url, body, options)
-      .map(response => response.json());
-    
-    patch$.subscribe(
-      value => this.handleSuccess(value, this),
-      error => this.handleError(error, this)
-    );
-
-    return patch$;
+    return this.http.patch(url, body, options)
+      .map(response => response.json())
+      .catch((error: Response) => {
+        this.handleError(error, this);
+        return Observable.throw(error.json());
+      });
   }
 
   private handleSuccess(value: any, _this?: any): void {
