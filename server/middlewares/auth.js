@@ -15,7 +15,7 @@ export const required = (req, res, next) => {
         }
 
         debug(`Token verified ${token}`)
-        req.token = token
+
         req.user = token.user
         next()
     })
