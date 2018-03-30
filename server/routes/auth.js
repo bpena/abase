@@ -17,6 +17,8 @@ const users = [{
     createdAt: Date.now()
 }]
 
+const loggedUsers = {}
+
 const findUserByUsername = uname => users.find(({ username }) => username === uname)
 
 const comparePasswords = (providedPassword, userPassword) => providedPassword === userPassword
@@ -26,7 +28,7 @@ app.get('/user', (req, res, next) => {
     res.status(200).json(users)
 })
 
-// POST /api/v1/auth
+// POST /api/v1/auth/signin
 app.post('/signin', (req, res, next) => {
     const { username, password } = req.body
     const user = findUserByUsername(username)
@@ -43,6 +45,9 @@ app.post('/signin', (req, res, next) => {
 
     const token = jwt.sign({ user }, secret, { expiresIn: 3600 })
 
+    loggedUsers[token] = user
+    debug(loggedUsers)
+
     res.status(200).json({
         message: 'Login succeded',
         token: token,
@@ -50,6 +55,16 @@ app.post('/signin', (req, res, next) => {
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email
+    })
+})
+
+// POST /api/v1/auth/signout
+app.post('/signout', (req, res, next) => {
+    const token = req.headers.token
+    debug(token)
+
+    res.status(200).json({
+        message: 'Logout succeded'
     })
 })
 
