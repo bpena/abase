@@ -1,8 +1,11 @@
 import express from 'express'
 import Debug from 'debug'
+import jwt from 'jsonwebtoken'
 
 const app = express.Router()
 const debug = new Debug('server::auth-route')
+
+const secret = 'miclavesecreta'
 
 const users = [{
     _id: 1,
@@ -25,8 +28,6 @@ app.get('/user', (req, res, next) => {
 
 // POST /api/v1/auth
 app.post('/signin', (req, res, next) => {
-    debug('1')
-    debug(req.body)
     const { username, password } = req.body
     const user = findUserByUsername(username)
 
@@ -40,12 +41,20 @@ app.post('/signin', (req, res, next) => {
         return handleError(res)
     }
 
-    debug('casi saliendo')
-    res.status(200).json('')
+    const token = jwt.sign({ user }, secret, { expiresIn: 3600 })
+
+    res.status(200).json({
+        message: 'Login succeded',
+        token: token,
+        userId: user._id,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email
+    })
 })
 
 const handleError = res => {
-    res.status(401).json({
+    return res.status(401).json({
         message: 'Login failed',
         error: 'Email and password don\'t match'
     })
