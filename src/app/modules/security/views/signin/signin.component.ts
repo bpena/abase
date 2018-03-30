@@ -25,7 +25,10 @@ export class SigninComponent implements OnInit {
   onSubmit() {
     this.authService.signin()
       .subscribe(
-        value => this.router.navigateByUrl('/security/signup'),
+        value => {
+          console.log(value);
+          this.router.navigateByUrl('/security/signup');
+        },
         error => console.log('signin ::: ', error)
       );
   }

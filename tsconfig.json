@@ -18,6 +18,7 @@
     ],
     "paths": {
        "@core/*": ["app/modules/core/*"],
+       "@environments/*": ["environments/*"],
        "@security/*": ["app/modules/security/*"]
     }
   }

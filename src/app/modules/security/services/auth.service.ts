@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { RequestOptionsArgs, Response, ResponseOptions } from '@angular/http';
+import { environment } from '@environments/environment';
+import * as urljoin from 'url-join';
 import { ConnectionService } from '@core/services/connection.service';
 
 @Injectable()
@@ -32,7 +34,8 @@ export class AuthService {
   }
 
   signin(): Observable<Response> {
-    return this.loginMock;
+    const url = urljoin(environment.apiUrl, 'user/1'); 
+    return this.connectionService.get(url);
   }
 
   signup() {
