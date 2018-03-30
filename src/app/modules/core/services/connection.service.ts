@@ -75,15 +75,17 @@ export class ConnectionService {
   }
 
   private handleError(error: any, _this?: any): void {
-    const message = `
-      ${error.statusText} <br />
-      <small>${error.url}</small>
-    `;
+    const errTitle = error.title ? error.title :
+      error.status ? error.status : 'Server Error';
+    
+    const errMsg = error.message ? error.message : 
+      error.status ? `${error.status} - ${error.statusText}` : 'Internal server error!';
+
     _this.snackBar.openFromComponent(WarningSnackbarComponent, {
       data: {
         type: WarningSnackbarType.ERROR,
-        title: `Error: ${error.status}`,
-        message: message
+        title: errTitle,
+        message: errMsg
       },
       duration: 15000
     });
