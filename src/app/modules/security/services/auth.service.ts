@@ -27,7 +27,7 @@ export class AuthService {
     this.logged = new BehaviorSubject(loggedIn);
   }
 
-  private login = (token, userId, username, firstname, lastname, email) => {
+  private login = ({token, userId, username, firstname, lastname, email}) => {
     this.currentUser = { username: username, firstname: firstname, lastname: lastname, email: email, _id: userId };
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify({ userId, username, firstname, lastname, email }));
@@ -47,7 +47,7 @@ export class AuthService {
     return this.connectionService.post(url, body)
       .map((response: any) => {
         const { token, userId, username, firstname, lastname, email } = response;
-        this.login(token, userId, username, firstname, lastname, email);
+        this.login(response);
         return response;
       })
       .catch(error => {
@@ -66,8 +66,19 @@ export class AuthService {
       })
   }
 
-  signup() {
-
+  signup(user: User): Observable<Response> {
+    const url = urljoin(environment.apiUrl, 'auth/signup'); 
+    const body = JSON.stringify(user);
+    return this.connectionService.post(url, body)
+      .map((response: any) => {
+        const { token, userId, username, firstname, lastname, email } = response;
+        this.login(response);
+        return response;
+      })
+      .catch(error => {
+        this.logout();
+        return error;
+      });
   }
 
   isLogged(): Observable<boolean> {

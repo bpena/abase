@@ -35,6 +35,8 @@ const findUserByUsername = uname => users.find(({ username }) => username === un
 
 const comparePasswords = (providedPassword, userPassword) => providedPassword === userPassword
 
+const createToken = (user) => jwt.sign({ user }, secret, { expiresIn: 3600 })
+
 app.get('/user', (req, res, next) => {
     debug(1)
     res.status(200).json(users)
@@ -58,10 +60,9 @@ app.post('/signin', (req, res, next) => {
         return handleError(res)
     }
 
-    const token = jwt.sign({ user }, secret, { expiresIn: 3600 })
-
+    const token = createToken(user)
+    // add current user to logged user list
     loggedUsers[token] = user
-    debug(loggedUsers)
 
     res.status(200).json({
         message: 'Login succeded',
@@ -69,7 +70,8 @@ app.post('/signin', (req, res, next) => {
         userId: user._id,
         firstname: user.firstname,
         lastname: user.lastname,
-        email: user.email
+        email: user.email,
+        uusername: user.username
     })
 })
 
@@ -82,6 +84,37 @@ app.post('/signout', required, (req, res, next) => {
 
     res.status(200).json({
         message: 'Logout succeded'
+    })
+})
+
+// POST /api/v1/auth/signup
+app.post('/signup', (req, res, next) => {
+    const { username, password, firstname, lastname, email } = req.body
+
+    const user = {
+        _id: +new Date(),
+        firstname: firstname,
+        lastname: lastname,
+        email: email,
+        username: username,
+        password: password
+    }
+    debug(`Creating new user ${user}`)
+    
+    const token = createToken(user)
+    // added current user to user list
+    users.push(user)
+    // add current user to logged user list
+    loggedUsers[token] = user
+
+    res.status(201).json({
+        message: 'User saved',
+        token,
+        userId: user._id,
+        firstname,
+        lastname,
+        email,
+        username
     })
 })
 
