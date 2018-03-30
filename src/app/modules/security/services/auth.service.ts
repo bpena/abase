@@ -22,12 +22,9 @@ export class AuthService {
     observer.next(response);
   });
 
-
   constructor(private connectionService: ConnectionService) {
     const loggedIn = localStorage.getItem('token') ? true : false;
     this.logged = new BehaviorSubject(loggedIn);
-
-
   }
 
   private login = (token, userId, username, firstname, lastname, email) => {
@@ -60,7 +57,6 @@ export class AuthService {
   }
 
   signout(): Observable<Response> {
-    /*
     const url = urljoin(environment.apiUrl, 'auth/signout');
     const body = {};
     return this.connectionService.post(url, body)
@@ -68,12 +64,6 @@ export class AuthService {
         this.logout();
         return response;
       })
-    */
-    return this.logoutMock
-      .map(response => {
-        this.logout();
-        return response;
-      });
   }
 
   signup() {

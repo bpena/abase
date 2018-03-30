@@ -14,10 +14,14 @@ export class ConnectionService {
   constructor(private http: Http, public snackBar: MatSnackBar) { }
 
   private updateOptions(options: RequestOptionsArgs): RequestOptionsArgs {
-    options = options ? options : {};
+    const token = localStorage.getItem('token');
 
-    options.headers = options.headers ? options.headers : new Headers({ 'Content-Type': 'application/json' });
-    
+    options = options ? options : {};
+    options.headers = options.headers ? options.headers : new Headers({});
+    options.headers.set('Content-Type', 'application/json');
+    if (token) {
+      options.headers.set('token', token);
+    }
     return options;
   }
 
