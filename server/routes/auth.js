@@ -1,21 +1,33 @@
 import express from 'express'
 import Debug from 'debug'
 import jwt from 'jsonwebtoken'
+import { required } from '../middlewares'
 
 const app = express.Router()
 const debug = new Debug('server::auth-route')
 
 const secret = 'miclavesecreta'
 
-const users = [{
-    _id: 1,
-    username: 'bpena',
-    firstname: 'Bernardo',
-    lastname: 'Peña',
-    email: 'bernardo.pena.ramos@gmail.com',
-    password: '123456',
-    createdAt: Date.now()
-}]
+const users = [
+    {
+        _id: 1,
+        username: 'bpena',
+        firstname: 'Bernardo',
+        lastname: 'Peña',
+        email: 'bernardo.pena.ramos@gmail.com',
+        password: '123456',
+        createdAt: Date.now()
+    },
+    {
+        _id: 2,
+        username: 'bernardo.penar@hotmail.com',
+        firstname: 'Bernardo',
+        lastname: 'Peña',
+        email: 'bernardo.pena.ramos@gmail.com',
+        password: 'elcondenado',
+        createdAt: Date.now()
+    },
+]
 
 const loggedUsers = {}
 
@@ -31,6 +43,9 @@ app.get('/user', (req, res, next) => {
 // POST /api/v1/auth/signin
 app.post('/signin', (req, res, next) => {
     const { username, password } = req.body
+
+    debug(password)
+
     const user = findUserByUsername(username)
 
     if (!user) {
@@ -59,9 +74,11 @@ app.post('/signin', (req, res, next) => {
 })
 
 // POST /api/v1/auth/signout
-app.post('/signout', (req, res, next) => {
+app.post('/signout', required, (req, res, next) => {
     const token = req.headers.token
-    debug(token)
+
+    // remove token of loggedUser list
+    delete loggedUsers[token]
 
     res.status(200).json({
         message: 'Logout succeded'
