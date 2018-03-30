@@ -10,6 +10,7 @@ export const users = [
         username: 'bpena',
         firstname: 'Bernardo',
         lastname: 'Peña',
+        displayname: 'Bernardo Peña',
         email: 'bernardo.pena.ramos@gmail.com',
         password: '123456',
         createdAt: Date.now()
@@ -19,6 +20,7 @@ export const users = [
         username: 'bernardo.penar@hotmail.com',
         firstname: 'Bernardo',
         lastname: 'Peña',
+        displayname: 'nano',
         email: 'bernardo.pena.ramos@gmail.com',
         password: 'elcondenado',
         createdAt: Date.now()
@@ -39,7 +41,8 @@ export const required = (req, res, next) => {
             debug('JWT was not encrypted with our secret')
             return res.status(401).json({
                 message: 'Unauthorized',
-                error: err
+                error: err,
+                redirectTo: '/security/signin'
             })
         }
 

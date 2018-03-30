@@ -12,7 +12,7 @@ import { User } from '@security/model/user';
 @Injectable()
 export class AuthService {
   private logged: BehaviorSubject<boolean>;
-  private currentUser?: User;
+  private currentUser$: BehaviorSubject<User>;
 
   private logoutMock: Observable<Response> = Observable.create(observer => {
     const response: Response = new Response({} as ResponseOptions);
@@ -24,18 +24,27 @@ export class AuthService {
 
   constructor(private connectionService: ConnectionService) {
     const loggedIn = localStorage.getItem('token') ? true : false;
+    const user = JSON.parse(localStorage.getItem('user'))
     this.logged = new BehaviorSubject(loggedIn);
+    this.currentUser$ = new BehaviorSubject(user);
   }
 
-  private login = ({token, userId, username, firstname, lastname, email}) => {
-    this.currentUser = { username: username, firstname: firstname, lastname: lastname, email: email, _id: userId };
+  private login = ({token, userId, username, firstname, lastname, email, displayname}) => {
+    this.currentUser$.next({
+      username,
+      firstname,
+      lastname,
+      email,
+      _id: userId,
+      displayname
+    });
     localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify({ userId, username, firstname, lastname, email }));
+    localStorage.setItem('user', JSON.stringify({ userId, username, firstname, lastname, email, displayname }));
     this.logged.next(true);
   }
 
   private logout() {
-    this.currentUser = null;
+    this.currentUser$.next(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.logged.next(false);
@@ -46,7 +55,6 @@ export class AuthService {
     const body = JSON.stringify(user);
     return this.connectionService.post(url, body)
       .map((response: any) => {
-        const { token, userId, username, firstname, lastname, email } = response;
         this.login(response);
         return response;
       })
@@ -71,7 +79,6 @@ export class AuthService {
     const body = JSON.stringify(user);
     return this.connectionService.post(url, body)
       .map((response: any) => {
-        const { token, userId, username, firstname, lastname, email } = response;
         this.login(response);
         return response;
       })
@@ -84,4 +91,8 @@ export class AuthService {
   isLogged(): Observable<boolean> {
     return this.logged;
   }
+
+  currentUser(): BehaviorSubject<User> {
+    return this.currentUser$;
+  }    
 }

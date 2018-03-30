@@ -48,7 +48,8 @@ app.post('/signin', (req, res, next) => {
         firstname: user.firstname,
         lastname: user.lastname,
         email: user.email,
-        uusername: user.username
+        uusername: user.username,
+        displayname: user.displayname
     })
 })
 
@@ -74,7 +75,8 @@ app.post('/signup', (req, res, next) => {
         lastname: lastname,
         email: email,
         username: username,
-        password: password
+        password: password,
+        displayname: `${firstname} ${lastname}`
     }
     debug(`Creating new user ${user}`)
     
@@ -91,7 +93,8 @@ app.post('/signup', (req, res, next) => {
         firstname,
         lastname,
         email,
-        username
+        username,
+        displayname: user.displayname
     })
 })
 

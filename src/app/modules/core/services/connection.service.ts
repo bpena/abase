@@ -82,14 +82,19 @@ export class ConnectionService {
   }
 
   private handleError(error: any, _this?: any): void {
-    const errorObj = error.json();
+    const { error: { name }, message, redirectTo } = error.json();
 
-    const errTitle = error.title ? error.title :
-      error.statusText ? error.statusText : 'Server Error';
+    const errTitle = name || 'Server Error';
+    let errMsg = '';
+
+    if (name === 'TokenExpiredError') {
+      errMsg = 'Tu sesión ha expirado';
+    } else if (name === 'JsonWebTokenError') {
+      errMsg = 'Ha habido un problema con tu sesión';
+    } else {
+      errMsg = message || 'Ha ocurrido un error. Inténtalo nuevamente';
+    }
     
-    const errMsg = errorObj.message ? `${errorObj.message} <br /> ${errorObj.error}` : 
-      error.status ? `${error.status} - ${error.statusText}` : 'Internal server error!';
-
     _this.snackBar.openFromComponent(WarningSnackbarComponent, {
       data: {
         type: WarningSnackbarType.ERROR,
@@ -99,8 +104,8 @@ export class ConnectionService {
       duration: 15000
     });
 
-    if (error.redirectTo) {
-      this.router.navigateByUrl(error.redirectTo);
+    if (redirectTo) {
+      this.router.navigateByUrl(redirectTo);
     }
   }
 }
