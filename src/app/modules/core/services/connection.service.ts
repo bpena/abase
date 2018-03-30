@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptionsArgs, Response } from '@angular/http';
+import { Http, RequestOptionsArgs, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { MatSnackBar } from '@angular/material';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
+import 'rxjs/add/observable/throw'
 import { WarningSnackbarType } from '@core/components/warning-snackbar/warning-snackbar-type.enum'
 import { WarningSnackbarComponent } from '@core/components/warning-snackbar/warning-snackbar.component';
 
@@ -13,7 +13,16 @@ export class ConnectionService {
 
   constructor(private http: Http, public snackBar: MatSnackBar) { }
 
+  private updateOptions(options: RequestOptionsArgs): RequestOptionsArgs {
+    options = options ? options : {};
+
+    options.headers = options.headers ? options.headers : new Headers({ 'Content-Type': 'application/json' });
+    
+    return options;
+  }
+
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
+    options = this.updateOptions(options);
     return this.http.get(url, options)
       .map(response => response.json())
       .catch((error: Response) => {
@@ -23,6 +32,7 @@ export class ConnectionService {
   }
 
   post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+    options = this.updateOptions(options);
     return this.http.post(url, body, options)
       .map(response => response.json())
       .catch((error: Response) => {
@@ -32,6 +42,7 @@ export class ConnectionService {
   }
 
   put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+    options = this.updateOptions(options);
     return this.http.put(url, body, options)
       .map(response => response.json())
       .catch((error: Response) => {
@@ -41,6 +52,7 @@ export class ConnectionService {
   }
 
   delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
+    options = this.updateOptions(options);
     return this.http.delete(url, options)
       .map(response => response.json())
       .catch((error: Response) => {
@@ -50,6 +62,7 @@ export class ConnectionService {
   }
 
   patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+    options = this.updateOptions(options);
     return this.http.patch(url, body, options)
       .map(response => response.json())
       .catch((error: Response) => {
@@ -62,10 +75,12 @@ export class ConnectionService {
   }
 
   private handleError(error: any, _this?: any): void {
+    const errorObj = error.json();
+
     const errTitle = error.title ? error.title :
-      error.status ? error.status : 'Server Error';
+      error.statusText ? error.statusText : 'Server Error';
     
-    const errMsg = error.message ? error.message : 
+    const errMsg = errorObj.message ? `${errorObj.message} <br /> ${errorObj.error}` : 
       error.status ? `${error.status} - ${error.statusText}` : 'Internal server error!';
 
     _this.snackBar.openFromComponent(WarningSnackbarComponent, {
