@@ -57,10 +57,6 @@ export class AuthService {
       .map((response: any) => {
         this.login(response);
         return response;
-      })
-      .catch(error => {
-        this.logout();
-        return error;
       });
   }
 
@@ -81,10 +77,6 @@ export class AuthService {
       .map((response: any) => {
         this.login(response);
         return response;
-      })
-      .catch(error => {
-        this.logout();
-        return error;
       });
   }
 
