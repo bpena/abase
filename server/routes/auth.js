@@ -51,7 +51,7 @@ app.post('/signin', async (req, res, next) => {
         lastname: user.lastname,
         email: user.email,
         uusername: user.username,
-        displayname: user.displayname
+        displayname: `${user.firstname} ${user.lastname}`
     })
 })
 
@@ -75,7 +75,7 @@ app.post('/signup', async (req, res, next) => {
         lastname,
         email,
         username,
-        password: hash(password, 10),
+        password: hash(password, 10)
     })
     debug(`Creating new user ${newUser}`)
     
