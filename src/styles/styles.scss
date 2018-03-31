@@ -25,11 +25,13 @@ html{
         }
 
         .extend {
+            background-color: rgba(255, 255, 255, 0.8);
             flex: 3;
         }
 
         .form {
             @include flex-column();
+            background-color: rgba(255, 255, 255, 0.95);
             min-width: 360px;
             overflow: auto;
 

@@ -1,5 +1,5 @@
 <div class="container" [class.is-mobile]="mobileQuery.matches">
-  <mat-toolbar>
+  <mat-toolbar color="accent">
     <mat-toolbar-row>
       <button mat-icon-button *ngIf="isLogged | async" (click)="snav.toggle()">
         <mat-icon>menu</mat-icon>
@@ -18,7 +18,7 @@
       </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <mat-sidenav-content class="image-background">
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>

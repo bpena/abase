@@ -14,6 +14,13 @@
                 @include flex-column();
                 max-height: calc(100vh - 56px);
                 overflow: auto;
+
+                background-image: url('/assets/images/bus.jpg');
+                background-repeat: no-repeat;
+                background-color: white;
+                background-size: cover;
+                background-position-x: right;
+                background-position-y: top;
             }
         }
     }
