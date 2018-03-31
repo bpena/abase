@@ -8,7 +8,7 @@ import { AuthService } from '@security/services/auth.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'bbase';
+  title = 'Transport Admin';
   mobileQuery: MediaQueryList;
   isLogged: any;
 

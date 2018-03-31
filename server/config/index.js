@@ -1,3 +1,3 @@
 export const secret = 'miclavesecreta'
-export const mongoUrl = 'mongodb://localhost/bbase'
-export const appName = 'server-bbase'
+export const mongoUrl = 'mongodb://localhost/transport-admin'
+export const appName = 'server-transport-admin'

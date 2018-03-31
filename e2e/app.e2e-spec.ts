@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('bbase App', () => {
+describe('transport admin', () => {
   let page: AppPage;
 
   beforeEach(() => {
