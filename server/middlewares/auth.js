@@ -10,11 +10,12 @@ export const required = (req, res, next) => {
             debug('JWT was not encrypted with our secret')
             return res.status(401).json({
                 message: 'Unauthorized',
-                error: err
+                error: err,
+                redirectTo: '/security/signin'
             })
         }
 
-        debug(`Token verified ${token}`)
+        debug(`Token verified ${req.headers.token}`)
 
         req.user = token.user
         next()

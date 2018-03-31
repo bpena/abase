@@ -7,11 +7,14 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw'
 import { WarningSnackbarType } from '@core/components/warning-snackbar/warning-snackbar-type.enum'
 import { WarningSnackbarComponent } from '@core/components/warning-snackbar/warning-snackbar.component';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ConnectionService {
 
-  constructor(private http: Http, public snackBar: MatSnackBar) { }
+  constructor(private http: Http, 
+            private router: Router,
+            public snackBar: MatSnackBar) { }
 
   private updateOptions(options: RequestOptionsArgs): RequestOptionsArgs {
     const token = localStorage.getItem('token');
@@ -79,14 +82,19 @@ export class ConnectionService {
   }
 
   private handleError(error: any, _this?: any): void {
-    const errorObj = error.json();
+    const { error: { name }, message, redirectTo } = error.json();
 
-    const errTitle = error.title ? error.title :
-      error.statusText ? error.statusText : 'Server Error';
+    const errTitle = name || 'Server Error';
+    let errMsg = '';
+
+    if (name === 'TokenExpiredError') {
+      errMsg = 'Tu sesión ha expirado';
+    } else if (name === 'JsonWebTokenError') {
+      errMsg = 'Ha habido un problema con tu sesión';
+    } else {
+      errMsg = message || 'Ha ocurrido un error. Inténtalo nuevamente';
+    }
     
-    const errMsg = errorObj.message ? `${errorObj.message} <br /> ${errorObj.error}` : 
-      error.status ? `${error.status} - ${error.statusText}` : 'Internal server error!';
-
     _this.snackBar.openFromComponent(WarningSnackbarComponent, {
       data: {
         type: WarningSnackbarType.ERROR,
@@ -95,5 +103,9 @@ export class ConnectionService {
       },
       duration: 15000
     });
+
+    if (redirectTo) {
+      this.router.navigateByUrl(redirectTo);
+    }
   }
 }
