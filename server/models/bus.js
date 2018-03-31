@@ -12,4 +12,4 @@ const BusSchema = Schema({
     createdBy: { type: ObjectId, ref: 'User' }
 })
 
-export default mongoose.model('User', UserSchema)
+export default mongoose.model('Bus', BusSchema)
