@@ -2,30 +2,32 @@ import express from 'express'
 import Debug from 'debug'
 import jwt from 'jsonwebtoken'
 import { secret } from '../config'
+import { required } from '../middlewares'
+import { User } from '../models'
 import {
-    required,
-    users, 
-    loggedUsers,
-    findUserByUsername,
-    comparePasswords,
-    createToken
-} from '../middlewares'
+    hashSync as hash,
+    compareSync as comparePasswords
+} from 'bcryptjs'
 
 const app = express.Router()
 const debug = new Debug('server::auth-route')
 
-app.get('/user', (req, res, next) => {
-    debug(1)
+export const loggedUsers = {}
+
+export const createToken = (user) => jwt.sign({ user }, secret, { expiresIn: 3600 })
+
+app.get('/user', async (req, res, next) => {
+    const users = await User.find()
     res.status(200).json(users)
 })
 
 // POST /api/v1/auth/signin
-app.post('/signin', (req, res, next) => {
+app.post('/signin', async (req, res, next) => {
     const { username, password } = req.body
 
     debug(password)
 
-    const user = findUserByUsername(username)
+    const user = await User.findOne({ username })
 
     if (!user) {
         debug(`User with username ${username} not found`)
@@ -66,23 +68,20 @@ app.post('/signout', required, (req, res, next) => {
 })
 
 // POST /api/v1/auth/signup
-app.post('/signup', (req, res, next) => {
+app.post('/signup', async (req, res, next) => {
     const { username, password, firstname, lastname, email } = req.body
-
-    const user = {
-        _id: +new Date(),
-        firstname: firstname,
-        lastname: lastname,
-        email: email,
-        username: username,
-        password: password,
-        displayname: `${firstname} ${lastname}`
-    }
-    debug(`Creating new user ${user}`)
+    const newUser = new User({
+        firstname,
+        lastname,
+        email,
+        username,
+        password: hash(password, 10),
+    })
+    debug(`Creating new user ${newUser}`)
     
+    const user = await newUser.save()
     const token = createToken(user)
-    // added current user to user list
-    users.push(user)
+
     // add current user to logged user list
     loggedUsers[token] = user
 
@@ -94,7 +93,7 @@ app.post('/signup', (req, res, next) => {
         lastname,
         email,
         username,
-        displayname: user.displayname
+        displayname: (user.firstname + ' ' + user.lastname)
     })
 })
 
