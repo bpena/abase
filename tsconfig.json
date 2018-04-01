@@ -17,9 +17,10 @@
       "dom"
     ],
     "paths": {
-       "@core/*": ["app/modules/core/*"],
-       "@environments/*": ["environments/*"],
-       "@security/*": ["app/modules/security/*"]
+      "@bus/*": ["app/modules/main/modules/bus/*"],
+      "@core/*": ["app/modules/core/*"],
+      "@environments/*": ["environments/*"],
+      "@security/*": ["app/modules/security/*"]
     }
   }
 }
