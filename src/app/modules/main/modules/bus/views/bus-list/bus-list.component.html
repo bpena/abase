@@ -1,5 +1,11 @@
-<mat-card class="extend">
-  <p>
-    bus-list works!
-  </p>  
+<mat-card class="content">
+  <mat-list>
+    <h2 mat-header>Buses</h2>
+    <mat-list-item *ngFor="let bus of buses">
+      
+        <h4 mat-line><a routerLink='../1'>{{ bus.number }}</a>  </h4>
+      
+        <p mat-line> {{ bus.owner }} </p>
+    </mat-list-item>
+  </mat-list>
 </mat-card>
