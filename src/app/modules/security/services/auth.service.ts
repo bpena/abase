@@ -14,14 +14,6 @@ export class AuthService {
   private logged: BehaviorSubject<boolean>;
   private currentUser$: BehaviorSubject<User>;
 
-  private logoutMock: Observable<Response> = Observable.create(observer => {
-    const response: Response = new Response({} as ResponseOptions);
-    response.ok = true;
-    response.status = 200;
-    response.statusText = 'todo OK';
-    observer.next(response);
-  });
-
   constructor(private connectionService: ConnectionService) {
     const loggedIn = localStorage.getItem('token') ? true : false;
     const user = JSON.parse(localStorage.getItem('user'))
