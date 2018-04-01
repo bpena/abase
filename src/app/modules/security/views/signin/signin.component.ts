@@ -31,8 +31,7 @@ export class SigninComponent implements OnInit {
       this.authService.signin(user)
         .subscribe(
           value => {
-            console.log(value);
-            this.router.navigateByUrl('/security/signup');
+            this.router.navigateByUrl('/');
           },
           error => console.log('signin ::: ', error)
         );
