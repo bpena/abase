@@ -46,6 +46,10 @@ html{
                 padding: 0;
             }
         }
+
+        .mat-error {
+            text-align: right;
+        }
             
         .is-mobile {
             .extend {
