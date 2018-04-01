@@ -1,3 +1,26 @@
-<p>
-  bus-detail works!
-</p>
+<mat-card class="content">
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <div *ngIf="!loading">
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>
+          <h2>Bus #{{ bus.number }}</h2>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="image">
+          <img mat-card-image src="/assets/images/volvo_01.jpg" alt="Photo of a Shiba Inu">
+        </div>
+        <div class="text">
+          <label><b>Owner:</b> {{ bus.owner }}</label>
+          <label><b>Alias:</b> {{ bus.alias }}</label>
+          <label><b>Number Plate:</b> {{ bus.numberPlate }}</label>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</mat-card>

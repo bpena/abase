@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BusListComponent } from '@bus/views/bus-list/bus-list.component';
 import { BusRouting } from '@bus/bus.routing';
 import { BusComponent } from '@bus/bus.component';
-import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { MatCardModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule, MatGridListModule } from '@angular/material';
 import { BusEditComponent } from '@bus/views/bus-edit/bus-edit.component';
 import { BusService } from '@bus/services/bus.service';
 import { CoreModule } from '@core/core.module';
@@ -19,8 +19,10 @@ import { BusDetailComponent } from './views/bus-detail/bus-detail.component';
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     ReactiveFormsModule,
   ],
   declarations: [ 

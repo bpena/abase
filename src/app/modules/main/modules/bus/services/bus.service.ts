@@ -15,11 +15,25 @@ export class BusService {
     observer.next(response);
   });
 
+  private busMock: Observable<Bus> = Observable.create(observer => {
+    const _bus: Bus = {
+      number: '123',
+      numberPlate: 'ABC-123',
+      alias: 'Mi bus',
+      owner: 'Bernardo Peña'
+    };
+    observer.next(_bus);
+  });
+
   constructor(private connectionService: ConnectionService) {
 
   }
 
   createBus(bus: Bus): Observable<Response> {
     return this.mock;
+  }
+
+  getBus(id): Observable<Bus> {
+    return this.busMock;
   }
 }

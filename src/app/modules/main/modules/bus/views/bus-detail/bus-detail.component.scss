@@ -3,4 +3,42 @@
 :host {
     @include flex-row();
     background-color: rgba(0,0,0,0);
+
+    .mat-card-content {
+        display: flex;
+
+        .is-mobile & {
+            display: block;
+            
+            .image {
+                width: initial;
+                
+                .mat-card-image {
+                    margin: 16px -16px;
+                    width: calc(100% + 32px);
+                }
+            }
+        
+            .text {
+                margin-left: 0;
+            }
+        }
+
+        label {
+            display: block;
+        }
+    
+        .image {
+            width: 50%;
+
+            .mat-card-image {
+                margin: 0;
+                width: 100%;
+            }
+        }
+    
+        .text {
+            margin-left: 48px;
+        }
+    }
 }
