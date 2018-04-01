@@ -26,8 +26,8 @@ export class SignupComponent implements OnInit {
         Validators.required,
         Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
       ]),
-      firstname: new FormControl(null, Validators.required),
-      lastname: new FormControl(null, Validators.required)
+      firstname: new FormControl(),
+      lastname: new FormControl()
     }, 
     PasswordValidation.MatchPassword)
   }
