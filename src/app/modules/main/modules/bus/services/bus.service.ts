@@ -6,6 +6,13 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class BusService {
+  _bus: Bus = {
+    number: '123',
+    numberPlate: 'ABC-123',
+    alias: 'Mi bus',
+    owner: 'Bernardo Peña'
+  };
+  _busList = new Array(10).fill(this._bus);
 
   private mock: Observable<Response> = Observable.create(observer => {
     const response: Response = new Response({} as ResponseOptions);
@@ -15,15 +22,11 @@ export class BusService {
     observer.next(response);
   });
 
-  private busMock: Observable<Bus> = Observable.create(observer => {
-    const _bus: Bus = {
-      number: '123',
-      numberPlate: 'ABC-123',
-      alias: 'Mi bus',
-      owner: 'Bernardo Peña'
-    };
-    observer.next(_bus);
-  });
+  private busMock: Observable<Bus> = Observable.create(observer => observer.next(this._bus));
+
+  private busListMock: Observable<Bus[]> = Observable.create(observer => observer.next(this._busList));
+
+
 
   constructor(private connectionService: ConnectionService) {
 
@@ -35,5 +38,9 @@ export class BusService {
 
   getBus(id): Observable<Bus> {
     return this.busMock;
+  }
+
+  getBuses(): Observable<Bus[]> {
+    return this.busListMock;
   }
 }
