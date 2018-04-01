@@ -21,6 +21,6 @@ export class UserMenuComponent implements OnInit {
 
   logout() {
     this.authService.signout()
-      .subscribe(value => this.router.navigateByUrl('/'));
+      .subscribe(value => this.router.navigateByUrl('/security/signin'));
   }
 }
