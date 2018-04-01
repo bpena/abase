@@ -5,10 +5,13 @@
   <h2>Sign up</h2>
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit(form)" #form="ngForm">
     <mat-form-field class="full-width">
-      <input type="text" matInput 
+        <input type="text" matInput 
         placeholder="Username"
         formControlName="username"
         #username>
+      <mat-error *ngIf="signupForm.controls.username.hasError('required')">
+        Username is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
@@ -16,13 +19,22 @@
         placeholder="Password"
         formControlName="password"
         #password>
+      <mat-error *ngIf="signupForm.controls.password.hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
-    
+  
     <mat-form-field class="full-width">
       <input type="password" matInput 
         placeholder="Confirm Password"
         formControlName="confirmPassword"
         #confirmPassword>
+      <mat-error *ngIf="signupForm.controls.confirmPassword.hasError('required')">
+        Confirm Password is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="signupForm.controls.confirmPassword.hasError('MatchPassword')">
+        Password and Confirm Password <strong>do not match</strong>
+      </mat-error>
     </mat-form-field>
     
     <mat-form-field class="full-width">
@@ -30,6 +42,12 @@
         placeholder="Email"
         formControlName="email"
         #email>
+      <mat-error *ngIf="signupForm.controls.email.hasError('pattern')">
+        Please enter a valid email address
+      </mat-error>
+      <mat-error *ngIf="signupForm.controls.email.hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
     
     <mat-form-field class="full-width">
@@ -37,6 +55,9 @@
         placeholder="Firstname"
         formControlName="firstname"
         #firstname>
+      <mat-error *ngIf="signupForm.controls.email.hasError('required')">
+        Firstname is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
     
     <mat-form-field class="full-width">
@@ -44,6 +65,9 @@
         placeholder="Lastname"
         formControlName="lastname"
         #lastname>
+      <mat-error *ngIf="signupForm.controls.email.hasError('required')">
+        lastname is <strong>required</strong>
+      </mat-error>    
     </mat-form-field>
     
     <button type="submit" mat-raised-button class="full-width" color="primary">Sign up</button>
