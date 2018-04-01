@@ -8,6 +8,7 @@ import { BusEditComponent } from '@bus/views/bus-edit/bus-edit.component';
 import { BusService } from '@bus/services/bus.service';
 import { CoreModule } from '@core/core.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BusDetailComponent } from './views/bus-detail/bus-detail.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [ 
     BusComponent,
     BusListComponent,
-    BusEditComponent
+    BusEditComponent,
+    BusDetailComponent
   ],
   providers: [
     BusService
