@@ -9,6 +9,7 @@ import { BusService } from '@bus/services/bus.service';
 import { CoreModule } from '@core/core.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BusDetailComponent } from './views/bus-detail/bus-detail.component';
+import { SecurityModule } from '@security/security.module';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { BusDetailComponent } from './views/bus-detail/bus-detail.component';
     MatListModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule,
+    SecurityModule
   ],
   declarations: [ 
     BusComponent,

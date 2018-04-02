@@ -3,11 +3,13 @@ import { BusListComponent } from '@bus/views/bus-list/bus-list.component';
 import { BusEditComponent } from '@bus/views/bus-edit/bus-edit.component';
 import { BusComponent } from '@bus/bus.component';
 import { BusDetailComponent } from '@bus/views/bus-detail/bus-detail.component';
+import { AuthGuard } from '@security/services/auth.guard';
 
 const ROUTES: Routes = [
     { 
         path: '',
         component: BusComponent,
+        canActivate: [AuthGuard],
         children: [
             { path: 'list', component: BusListComponent },
             { path: 'new', component: BusEditComponent },
