@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@security/services/auth.service';
 import { Router } from '@angular/router';
+import { Constants } from '@core/utils/constants';
 
 @Component({
   selector: 'app-user-menu',
@@ -21,6 +22,9 @@ export class UserMenuComponent implements OnInit {
 
   logout() {
     this.authService.signout()
-      .subscribe(value => this.router.navigateByUrl('/'));
+      .subscribe(value => {
+        const urlRedirect = value.redirectTo || Constants.URL_AFTER_LOGOUT_SUCCESS;
+        this.router.navigateByUrl('/');
+      });
   }
 }

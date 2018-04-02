@@ -1,3 +1,4 @@
+import { UserStatus } from '@security/model/user-status.enum';
 export interface User {
     username: string,
     password?: string,
@@ -6,5 +7,6 @@ export interface User {
     lastname?: string,
     displayname?: string,
     createdAt?: number,
-    _id?: string    
+    _id?: string,
+    status?: UserStatus
 }

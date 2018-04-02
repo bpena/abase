@@ -44,7 +44,7 @@ export class AuthService {
     this.logged.next(false);
   }
 
-  signin(user: User): Observable<Response> {
+  signin(user: User): Observable<any> {
     const url = urljoin(environment.apiUrl, 'auth/signin'); 
     const body = JSON.stringify(user);
     return this.connectionService.post(url, body)
@@ -54,7 +54,7 @@ export class AuthService {
       });
   }
 
-  signout(): Observable<Response> {
+  signout(): Observable<any> {
     const url = urljoin(environment.apiUrl, 'auth/signout');
     const body = {};
     return this.connectionService.post(url, body)
@@ -64,7 +64,7 @@ export class AuthService {
       })
   }
 
-  signup(user: User): Observable<Response> {
+  signup(user: User): Observable<any> {
     return this.userService.createUser(user)
       .map((response: any) => {
         this.login(response);

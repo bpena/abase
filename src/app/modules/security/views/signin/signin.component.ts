@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { AuthService } from '@security/services/auth.service';
 import { Router } from '@angular/router';
 import { User } from '@security/model/user';
+import { Constants } from '@core/utils/constants';
 
 @Component({
   selector: 'app-signin',
@@ -31,8 +32,8 @@ export class SigninComponent implements OnInit {
       this.authService.signin(user)
         .subscribe(
           value => {
-            console.log(value);
-            this.router.navigateByUrl('/security/signup');
+            const urlRedirect = value.redirectTo || Constants.URL_AFTER_LOGIN_SUCCESS;
+            this.router.navigateByUrl('/');
           },
           error => console.log('signin ::: ', error)
         );

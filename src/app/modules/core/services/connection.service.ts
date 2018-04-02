@@ -38,7 +38,7 @@ export class ConnectionService {
       });
   }
 
-  post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+  post(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
     options = this.updateOptions(options);
     return this.http.post(url, body, options)
       .map(response => response.json())
@@ -48,7 +48,7 @@ export class ConnectionService {
       });
   }
 
-  put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+  put(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
     options = this.updateOptions(options);
     return this.http.put(url, body, options)
       .map(response => response.json())
@@ -58,7 +58,7 @@ export class ConnectionService {
       });
   }
 
-  delete(url: string, options?: RequestOptionsArgs): Observable<Response> {
+  delete(url: string, options?: RequestOptionsArgs): Observable<any> {
     options = this.updateOptions(options);
     return this.http.delete(url, options)
       .map(response => response.json())
@@ -68,7 +68,7 @@ export class ConnectionService {
       });
   }
 
-  patch(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
+  patch(url: string, body: any, options?: RequestOptionsArgs): Observable<any> {
     options = this.updateOptions(options);
     return this.http.patch(url, body, options)
       .map(response => response.json())
