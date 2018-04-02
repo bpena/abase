@@ -10,6 +10,7 @@ import { AuthService } from '@security/services/auth.service';
 import { UserMenuComponent } from '@security/views/user-menu/user-menu.component';
 import { UserListComponent } from '@security/views/user-list/user-list.component';
 import { UserService } from '@security/services/user.service';
+import { AuthGuard } from '@security/services/auth.guard';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { UserService } from '@security/services/user.service';
     UserMenuComponent
   ],
   providers: [
+    AuthGuard,
     AuthService,
     UserService
   ]

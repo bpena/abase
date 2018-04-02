@@ -72,6 +72,12 @@ export class AuthService {
       });
   }
 
+  validateToken() {
+    const url = urljoin(environment.apiUrl, 'auth/token');
+    return this.connectionService.get(url)
+      .map(value => value.isValid);
+  }
+
   isLogged(): Observable<boolean> {
     return this.logged;
   }
