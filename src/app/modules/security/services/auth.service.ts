@@ -62,6 +62,10 @@ export class AuthService {
         this.logout();
         return response;
       })
+      .catch(error => {
+        this.logout();
+        return Observable.throw(error);
+      })
   }
 
   signup(user: User): Observable<any> {
@@ -69,6 +73,16 @@ export class AuthService {
       .map((response: any) => {
         this.login(response);
         return response;
+      });
+  }
+
+  validateToken() {
+    const url = urljoin(environment.apiUrl, 'auth/token');
+    return this.connectionService.get(url)
+      .map(value => value.isValid)
+      .catch(error => {
+        this.logout();
+        return Observable.create(observer => observer.next(false));
       });
   }
 

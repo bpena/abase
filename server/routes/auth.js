@@ -17,9 +17,12 @@ export const loggedUsers = {}
 
 export const createToken = (user) => jwt.sign({ user }, secret, { expiresIn: 3600 })
 
-app.get('/user', async (req, res, next) => {
-    const users = await User.find()
-    res.status(200).json(users)
+// GET /api/v1/auth/token/:token
+app.get('/token', required, (req, res, next) => {
+    res.status(200).json({
+        message: 'token is valid',
+        isValid: true
+    })    
 })
 
 // POST /api/v1/auth/signin
