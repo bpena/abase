@@ -8,13 +8,15 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import { ConnectionService } from '@core/services/connection.service';
 import { User } from '@security/model/user';
+import { UserService } from '@security/services/user.service';
 
 @Injectable()
 export class AuthService {
   private logged: BehaviorSubject<boolean>;
   private currentUser$: BehaviorSubject<User>;
 
-  constructor(private connectionService: ConnectionService) {
+  constructor(private connectionService: ConnectionService,
+            private userService: UserService) {
     const loggedIn = localStorage.getItem('token') ? true : false;
     const user = JSON.parse(localStorage.getItem('user'))
     this.logged = new BehaviorSubject(loggedIn);
@@ -42,7 +44,7 @@ export class AuthService {
     this.logged.next(false);
   }
 
-  signin(user: User): Observable<Response> {
+  signin(user: User): Observable<any> {
     const url = urljoin(environment.apiUrl, 'auth/signin'); 
     const body = JSON.stringify(user);
     return this.connectionService.post(url, body)
@@ -52,7 +54,7 @@ export class AuthService {
       });
   }
 
-  signout(): Observable<Response> {
+  signout(): Observable<any> {
     const url = urljoin(environment.apiUrl, 'auth/signout');
     const body = {};
     return this.connectionService.post(url, body)
@@ -62,10 +64,8 @@ export class AuthService {
       })
   }
 
-  signup(user: User): Observable<Response> {
-    const url = urljoin(environment.apiUrl, 'auth/signup'); 
-    const body = JSON.stringify(user);
-    return this.connectionService.post(url, body)
+  signup(user: User): Observable<any> {
+    return this.userService.createUser(user)
       .map((response: any) => {
         this.login(response);
         return response;
