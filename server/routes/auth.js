@@ -8,6 +8,7 @@ import {
     hashSync as hash,
     compareSync as comparePasswords
 } from 'bcryptjs'
+import { generateHash } from '../utils'
 
 const app = express.Router()
 const debug = new Debug('server::auth-route')
@@ -25,18 +26,21 @@ app.get('/user', async (req, res, next) => {
 app.post('/signin', async (req, res, next) => {
     const { username, password } = req.body
 
-    debug(password)
-
     const user = await User.findOne({ username })
 
     if (!user) {
         debug(`User with username ${username} not found`)
-        return handleError(res)
+        return handleError('Email and password don\'t match', res)
     }
 
     if (!comparePasswords(password, user.password)) {
         debug(`Password do not match ${password} !== ${user.password}`)
-        return handleError(res)
+        return handleError('Email and password don\'t match', res)
+    }
+
+    if (user.status === 'unconfirmed') {
+        debug(`User ${user} is unconfirmed`)
+        return handleError(`User is unconfirmed`, res)
     }
 
     const token = createToken(user)
@@ -51,7 +55,9 @@ app.post('/signin', async (req, res, next) => {
         lastname: user.lastname,
         email: user.email,
         uusername: user.username,
-        displayname: `${user.firstname} ${user.lastname}`
+        displayname: `${user.firstname} ${user.lastname}`,
+        status: user.status,
+        hashActivator: generateHash()
     })
 })
 
@@ -75,7 +81,8 @@ app.post('/signup', async (req, res, next) => {
         lastname,
         email,
         username,
-        password: hash(password, 10)
+        password: hash(password, 10),
+        hashActivator: 'asdf'
     })
     debug(`Creating new user ${newUser}`)
     
@@ -93,14 +100,15 @@ app.post('/signup', async (req, res, next) => {
         lastname,
         email,
         username,
-        displayname: (user.firstname + ' ' + user.lastname)
+        displayname: (user.firstname + ' ' + user.lastname),
+        status: user.status
     })
 })
 
-const handleError = res => {
+const handleError = (error, res) => {
     return res.status(401).json({
         message: 'Login failed',
-        error: 'Email and password don\'t match'
+        error: error
     })
 }
 
