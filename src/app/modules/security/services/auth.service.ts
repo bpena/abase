@@ -8,21 +8,15 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import { ConnectionService } from '@core/services/connection.service';
 import { User } from '@security/model/user';
+import { UserService } from '@security/services/user.service';
 
 @Injectable()
 export class AuthService {
   private logged: BehaviorSubject<boolean>;
   private currentUser$: BehaviorSubject<User>;
 
-  private logoutMock: Observable<Response> = Observable.create(observer => {
-    const response: Response = new Response({} as ResponseOptions);
-    response.ok = true;
-    response.status = 200;
-    response.statusText = 'todo OK';
-    observer.next(response);
-  });
-
-  constructor(private connectionService: ConnectionService) {
+  constructor(private connectionService: ConnectionService,
+            private userService: UserService) {
     const loggedIn = localStorage.getItem('token') ? true : false;
     const user = JSON.parse(localStorage.getItem('user'))
     this.logged = new BehaviorSubject(loggedIn);
@@ -71,9 +65,7 @@ export class AuthService {
   }
 
   signup(user: User): Observable<Response> {
-    const url = urljoin(environment.apiUrl, 'auth/signup'); 
-    const body = JSON.stringify(user);
-    return this.connectionService.post(url, body)
+    return this.userService.createUser(user)
       .map((response: any) => {
         this.login(response);
         return response;

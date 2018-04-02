@@ -1,0 +1,10 @@
+<mat-card class="content">
+  <h2>Users</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let user of userList">
+      <mat-icon mat-list-icon>folder</mat-icon>
+      <h4 mat-line>{{ user.username }}</h4>
+      <p mat-line> {{ user.firstname }} {{ user.lastname }} </p>
+    </mat-list-item>
+  </mat-list>
+</mat-card>
