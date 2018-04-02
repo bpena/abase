@@ -28,7 +28,7 @@ export class ConnectionService {
     return options;
   }
 
-  get(url: string, options?: RequestOptionsArgs): Observable<Response> {
+  get(url: string, options?: RequestOptionsArgs): Observable<any> {
     options = this.updateOptions(options);
     return this.http.get(url, options)
       .map(response => response.json())

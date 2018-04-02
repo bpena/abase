@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatMenuModule } from '@angular/material';
+import { MatCardModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatListModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from '@security/views/signup/signup.component';
 import { SecurityRouting } from '@security/security.routing';
@@ -20,6 +20,7 @@ import { UserService } from '@security/services/user.service';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
     MatMenuModule,
     ReactiveFormsModule,
     SecurityRouting
