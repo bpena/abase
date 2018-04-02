@@ -22,13 +22,9 @@ export class UserMenuComponent implements OnInit {
 
   logout() {
     this.authService.signout()
-<<<<<<< HEAD
-      .subscribe(value => this.router.navigateByUrl('/security/signin'));
-=======
       .subscribe(value => {
         const urlRedirect = value.redirectTo || Constants.URL_AFTER_LOGOUT_SUCCESS;
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl(urlRedirect);
       });
->>>>>>> master
   }
 }
