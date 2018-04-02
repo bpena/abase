@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatMenuModule } from '@angular/material';
+import { MatCardModule, MatButtonModule, MatIconModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatListModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from '@security/views/signup/signup.component';
 import { SecurityRouting } from '@security/security.routing';
 import { SigninComponent } from '@security/views/signin/signin.component';
 import { SecurityComponent } from '@security/security.component';
 import { AuthService } from '@security/services/auth.service';
-import { UserMenuComponent } from './views/user-menu/user-menu.component';
+import { UserMenuComponent } from '@security/views/user-menu/user-menu.component';
+import { UserListComponent } from '@security/views/user-list/user-list.component';
+import { UserService } from '@security/services/user.service';
 
 @NgModule({
   imports: [
@@ -18,6 +20,7 @@ import { UserMenuComponent } from './views/user-menu/user-menu.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
     MatMenuModule,
     ReactiveFormsModule,
     SecurityRouting
@@ -26,13 +29,15 @@ import { UserMenuComponent } from './views/user-menu/user-menu.component';
     SigninComponent,
     SecurityComponent,
     SignupComponent,
-    UserMenuComponent
+    UserMenuComponent,
+    UserListComponent
   ],
   exports: [
     UserMenuComponent
   ],
   providers: [
-    AuthService
+    AuthService,
+    UserService
   ]
 })
 export class SecurityModule { }
