@@ -85,8 +85,11 @@ app.post('/signup', async (req, res, next) => {
         email,
         username,
         password: hash(password, 10),
-        hashActivator: 'asdf'
-    })
+        hashDate: new Date().getTime(),
+        hashActivator:  generateHash(),
+        status: 'unconfirmed'
+        })
+
     debug(`Creating new user ${newUser}`)
     
     const user = await newUser.save()
