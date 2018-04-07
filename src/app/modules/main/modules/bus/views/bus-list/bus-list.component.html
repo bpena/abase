@@ -1,11 +1,17 @@
 <mat-card class="content">
-  <mat-list>
-    <h2 mat-header>Buses</h2>
-    <mat-list-item *ngFor="let bus of buses">
-      
-        <h4 mat-line><a routerLink='../1'>{{ bus.number }}</a>  </h4>
-      
-        <p mat-line> {{ bus.owner }} </p>
-    </mat-list-item>
-  </mat-list>
+  <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>Buses</mat-card-title>
+        <button mat-mini-fab color="primary">
+          <mat-icon aria-label="Add bus">add</mat-icon>
+        </button>
+      </mat-card-header>
+      <mat-nav-list>
+      <a mat-list-item routerLink='../1' *ngFor="let bus of buses">
+          <h4 mat-line>{{ bus.number }} - {{ bus.alias }}</h4>
+          <p mat-line> {{ bus.owner }} </p>
+          <img src="/assets/images/volvo_01.jpg" alt="{{ bus.number }}">
+      </a>
+    </mat-nav-list>
+  </mat-card>
 </mat-card>

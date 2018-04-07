@@ -2,24 +2,29 @@
   <mat-spinner *ngIf="loading"></mat-spinner>
   <div *ngIf="!loading">
     <mat-card class="card">
-      <mat-card-header>
-        <mat-card-title>
-          <h2>Bus #{{ bus.number }}</h2>
-        </mat-card-title>
-      </mat-card-header>
       <mat-card-content>
         <div class="image">
-          <img mat-card-image src="/assets/images/volvo_01.jpg" alt="Photo of a Shiba Inu">
+          <img mat-card-image src="/assets/images/volvo_01.jpg" alt="{{ bus.number }}">
         </div>
         <div class="text">
+          <div class="button-container">
+            <a mat-mini-fab color="primary" routerLink="../edit/1">
+              <mat-icon aria-label="Add bus">mode_edit</mat-icon>
+            </a>
+            <button mat-mini-fab color="warn" (click)="onDelete()">
+              <mat-icon aria-label="Add bus">delete</mat-icon>
+            </button>
+          </div>
+
+          <label><b>Bus #:</b> {{ bus.number }}</label>
           <label><b>Owner:</b> {{ bus.owner }}</label>
           <label><b>Alias:</b> {{ bus.alias }}</label>
           <label><b>Number Plate:</b> {{ bus.numberPlate }}</label>
         </div>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
+        <button mat-raised-button color="primary">Update</button>
+        <button mat-raised-button color="accent">Delete</button>
       </mat-card-actions>
     </mat-card>
   </div>
