@@ -9,6 +9,7 @@ import {
     compareSync as comparePasswords
 } from 'bcryptjs'
 import { generateHash } from '../utils'
+import { UserStatus } from '../commons'
 
 const app = express.Router()
 const debug = new Debug('server::auth-route')
@@ -41,7 +42,7 @@ app.post('/signin', async (req, res, next) => {
         return handleError('Email and password don\'t match', res)
     }
 
-    if (user.status === 'unconfirmed') {
+    if (user.status === UserStatus.UNCONFIRMED) {
         debug(`User ${user} is unconfirmed`)
         return handleError(`User is unconfirmed`, res)
     }
@@ -87,7 +88,7 @@ app.post('/signup', async (req, res, next) => {
         password: hash(password, 10),
         hashDate: new Date().getTime(),
         hashActivator:  generateHash(),
-        status: 'unconfirmed'
+        status: UserStatus.UNCONFIRMED
         })
 
     debug(`Creating new user ${newUser}`)
