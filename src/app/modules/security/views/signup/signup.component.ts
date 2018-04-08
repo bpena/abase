@@ -4,6 +4,7 @@ import { PasswordValidation } from '@core/utils/validators/password.validation';
 import { AuthService } from '@security/services/auth.service';
 import { Router } from '@angular/router';
 import { User } from '@security/model/user';
+import { Constants } from '@core/utils/constants';
 
 @Component({
   selector: 'app-signup',
@@ -46,8 +47,8 @@ export class SignupComponent implements OnInit {
       this.authService.signup(user)
         .subscribe(
           value => {
-            console.log(value);
-            this.router.navigateByUrl('/security/signup');
+            const urlRedirect = value.redirectTo || Constants.URL_AFTER_SIGNUP_SUCCESS;
+            this.router.navigateByUrl(urlRedirect);
           },
           error => console.log('signup ::: ', error)
         );

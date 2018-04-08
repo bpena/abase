@@ -9,6 +9,7 @@ import 'rxjs/add/operator/catch';
 import { ConnectionService } from '@core/services/connection.service';
 import { User } from '@security/model/user';
 import { UserService } from '@security/services/user.service';
+import { Constants } from '@core/utils/constants';
 
 @Injectable()
 export class AuthService {
@@ -71,7 +72,9 @@ export class AuthService {
   signup(user: User): Observable<any> {
     return this.userService.createUser(user)
       .map((response: any) => {
-        this.login(response);
+        if (Constants.LOGIN_ON_SIGNUP) {
+          this.login(response);
+        }
         return response;
       });
   }
