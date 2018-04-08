@@ -8,7 +8,7 @@ import {
     hashSync as hash,
     compareSync as comparePasswords
 } from 'bcryptjs'
-import { generateHash } from '../utils'
+import { generateHash, sendActivationEmail } from '../utils'
 import { UserStatus } from '../commons'
 
 const app = express.Router()
@@ -99,6 +99,8 @@ app.post('/signup', async (req, res, next) => {
     // add current user to logged user list
     loggedUsers[token] = user
 
+    sendActivationEmail(user)
+    
     res.status(201).json({
         message: 'User saved',
         token,
