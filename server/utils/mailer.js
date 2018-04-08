@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 })
 
 export const sendActivationEmail = (user) => {
-    const activationUrl = `http://localhost:3000/api/v1/user/activate/${user.hashActivator}`
+    const activationUrl = `http://localhost:4200/security/account-activation/${user.hashActivator}`
     const mailOptions = {
         from: 'bernardo.pena.ramos@gmail.com',
         to: user.email,
