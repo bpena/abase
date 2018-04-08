@@ -95,5 +95,15 @@ export class AuthService {
 
   currentUser(): BehaviorSubject<User> {
     return this.currentUser$;
-  }    
+  }
+
+  activateAccount(hash) {
+    const url = urljoin(environment.apiUrl, 'user/activate', hash);
+    return this.connectionService.get(url)
+      .map(response => {
+        console.log(response);
+        return response;
+      })
+      .catch(error => Observable.throw(error));
+  }
 }

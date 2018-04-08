@@ -4,6 +4,7 @@ import { SigninComponent } from '@security/views/signin/signin.component';
 import { SignupComponent } from '@security/views/signup/signup.component';
 import { UserListComponent } from '@security/views/user-list/user-list.component';
 import { AuthGuard } from '@security/services/auth.guard';
+import { AccountConfirmationComponent } from '@security/views/account-confirmation/account-confirmation.component';
 
 const ROUTES: Routes = [
     {
@@ -12,7 +13,8 @@ const ROUTES: Routes = [
         children: [
             { path: 'signin', component: SigninComponent },
             { path: 'signup', component: SignupComponent },
-            { path: 'user/list', component: UserListComponent, canActivate: [AuthGuard] }
+            { path: 'account-activation/:activationHash', component: AccountConfirmationComponent },
+            { path: 'user/list', component: UserListComponent, canActivate: [AuthGuard] },
         ]
     }
 ];
