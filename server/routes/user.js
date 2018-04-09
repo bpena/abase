@@ -50,7 +50,13 @@ app.get('/activate/:hash', async (req, res, next) => {
             _user.hashDate = null
             _user.status = UserStatus.ACTIVATED
             const saved = await _user.save()
-            res.send('Activado')
+            const { firstname, lastname, email, status } = saved
+            res.status(200).json({
+                firstname,
+                lastname,
+                email,
+                status
+            })
         }
         else {
             handleError('Link is expired', res)
