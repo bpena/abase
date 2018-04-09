@@ -99,6 +99,7 @@ export class AuthService {
 
   activateAccount(hash) {
     const url = urljoin(environment.apiUrl, 'user/activate', hash);
+    console.log(url);
     return this.connectionService.get(url)
       .map(response => {
         console.log(response);
