@@ -12,6 +12,7 @@ export class AccountConfirmationComponent implements OnInit {
   private hasError = false;
   private user: User;
 
+
   constructor(private activatedRouter: ActivatedRoute,
             private authService: AuthService,
             private router: Router) { }

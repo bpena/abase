@@ -11,7 +11,7 @@ export class User {
     status?: UserStatus;
 
     constructor(obj: {
-        username: string,
+        username?: string,
         password?: string,
         email?: string,
         firstname?: string,
@@ -21,6 +21,7 @@ export class User {
         _id?: string,
         status?: UserStatus
     }) {
+        obj = obj || {};
         this.username  = obj.username;
         this.password  = obj.password;
         this.email     = obj.email;
