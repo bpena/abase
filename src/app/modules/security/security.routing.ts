@@ -6,6 +6,7 @@ import { UserListComponent } from '@security/views/user-list/user-list.component
 import { AuthGuard } from '@security/services/auth.guard';
 import { AccountConfirmationComponent } from '@security/views/account-confirmation/account-confirmation.component';
 import { PostSignupComponent } from '@security/views/post-signup/post-signup.component';
+import { NotFoundComponent } from '@security/views/not-found/not-found.component';
 
 const ROUTES: Routes = [
     {
@@ -17,6 +18,7 @@ const ROUTES: Routes = [
             { path: 'account-activation/:activationHash', component: AccountConfirmationComponent },
             { path: 'post-signup', component: PostSignupComponent },
             { path: 'user/list', component: UserListComponent, canActivate: [AuthGuard] },
+            { path: '**', component: NotFoundComponent }
         ]
     }
 ];

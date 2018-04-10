@@ -13,6 +13,7 @@ import { UserService } from '@security/services/user.service';
 import { AuthGuard } from '@security/services/auth.guard';
 import { AccountConfirmationComponent } from './views/account-confirmation/account-confirmation.component';
 import { PostSignupComponent } from './views/post-signup/post-signup.component';
+import { NotFoundComponent } from './views/not-found/not-found.component';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { PostSignupComponent } from './views/post-signup/post-signup.component';
     UserMenuComponent,
     UserListComponent,
     AccountConfirmationComponent,
-    PostSignupComponent
+    PostSignupComponent,
+    NotFoundComponent
   ],
   exports: [
     UserMenuComponent
