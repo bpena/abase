@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { PasswordValidation } from '@core/utils/validators/password.validation';
 import { AuthService } from '@security/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { User } from '@security/model/user';
 import { Constants } from '@core/utils/constants';
 
@@ -36,19 +36,25 @@ export class SignupComponent implements OnInit {
   onSubmit(form: NgForm) {
     if (form.valid) {
       const { username, password, firstname, lastname, email } = form.value;
-      const user: User = {
+      const user: User = new User({
         username,
         password,
         firstname,
         lastname,
         email
-      };
+      });
       
       this.authService.signup(user)
         .subscribe(
           value => {
             const urlRedirect = value.redirectTo || Constants.URL_AFTER_SIGNUP_SUCCESS;
-            this.router.navigateByUrl(urlRedirect);
+            const navigationExtras: NavigationExtras = {
+              queryParams: {
+                user: JSON.stringify(new User(value)),
+                hasError: false
+              }
+            };
+            this.router.navigate([urlRedirect], navigationExtras);
           },
           error => console.log('signup ::: ', error)
         );

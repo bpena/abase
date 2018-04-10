@@ -19,7 +19,7 @@ export class AuthService {
   constructor(private connectionService: ConnectionService,
             private userService: UserService) {
     const loggedIn = localStorage.getItem('token') ? true : false;
-    const user = JSON.parse(localStorage.getItem('user'))
+    const user: User = new User(JSON.parse(localStorage.getItem('user')));
     this.logged = new BehaviorSubject(loggedIn);
     this.currentUser$ = new BehaviorSubject(user);
   }
@@ -95,5 +95,16 @@ export class AuthService {
 
   currentUser(): BehaviorSubject<User> {
     return this.currentUser$;
-  }    
+  }
+
+  activateAccount(hash) {
+    const url = urljoin(environment.apiUrl, 'user/activate', hash);
+    console.log(url);
+    return this.connectionService.get(url)
+      .map(response => {
+        console.log(response);
+        return response;
+      })
+      .catch(error => Observable.throw(error));
+  }
 }

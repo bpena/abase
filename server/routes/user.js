@@ -3,7 +3,7 @@ import Debug from 'debug'
 import { handleError } from '../utils';
 import { User } from '../models'
 import { generateHash } from '../utils'
-import { UserStatus } from '../commons'
+import { UserStatus, ACTIVATION_TIME } from '../commons'
 
 const app = express.Router()
 const debug = new Debug('server::user-route')
@@ -43,14 +43,21 @@ app.get('/:id', async (req, res, next) => {
 app.get('/activate/:hash', async (req, res, next) => {
     const _user = await User.findOne({'hashActivator': req.params.hash})
     if (_user) {
+        // _timeDiff in minutes
         const _timeDiff = _user.status === UserStatus.UNCONFIRMED ? 0 : 
                     ((new Date().getTime() - _user.hashDate.getTime()) / 60000)
-        if (_timeDiff <= 10) {
+        if (_timeDiff <= ACTIVATION_TIME) {
             _user.hashActivator = null
             _user.hashDate = null
             _user.status = UserStatus.ACTIVATED
             const saved = await _user.save()
-            res.send('Activado')
+            const { firstname, lastname, email, status } = saved
+            res.status(200).json({
+                firstname,
+                lastname,
+                email,
+                status
+            })
         }
         else {
             handleError('Link is expired', res)
