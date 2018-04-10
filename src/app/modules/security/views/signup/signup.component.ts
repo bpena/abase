@@ -36,13 +36,13 @@ export class SignupComponent implements OnInit {
   onSubmit(form: NgForm) {
     if (form.valid) {
       const { username, password, firstname, lastname, email } = form.value;
-      const user: User = {
+      const user: User = new User({
         username,
         password,
         firstname,
         lastname,
         email
-      };
+      });
       
       this.authService.signup(user)
         .subscribe(

@@ -19,7 +19,7 @@ export class AuthService {
   constructor(private connectionService: ConnectionService,
             private userService: UserService) {
     const loggedIn = localStorage.getItem('token') ? true : false;
-    const user = JSON.parse(localStorage.getItem('user'))
+    const user: User = new User(JSON.parse(localStorage.getItem('user')));
     this.logged = new BehaviorSubject(loggedIn);
     this.currentUser$ = new BehaviorSubject(user);
   }
