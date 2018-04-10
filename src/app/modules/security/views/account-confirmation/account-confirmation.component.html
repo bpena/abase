@@ -1,0 +1,14 @@
+<mat-card class="content">
+  <h2>Activation Account</h2>
+  <div *ngIf="hasError; else no_error">
+    <h3>There is a small problem</h3>
+    <hr>
+    <h4>This invitation link isn't valid. Perhaps you already used it?</h4>
+  </div>
+  
+  <ng-template #no_error>
+    <h3>Hi {{user.firstname}} {{user.lastname}}</h3>
+    <hr>
+    <h4>Your account is already activated. <a mat-button color="accent" routerLink="/security/signin">Log in</a></h4>
+  </ng-template>
+</mat-card>
