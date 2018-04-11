@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { UserService } from '@security/services/user.service';
 
 @Component({
@@ -27,8 +27,23 @@ export class ForgotPasswordComponent implements OnInit {
   onSubmit(form: NgForm) {
     if (form.valid) {
       const { email } = form.value;
+      const navigationExtras: NavigationExtras = {
+        queryParams: {
+          email,
+          hasError: false
+        }
+      };
       this.userService.restorePassword(email)
-        .subscribe(value => console.log(value))
+        .subscribe(
+          value => {
+            navigationExtras.queryParams.hasError = false;
+            this.router.navigate(['/security/post-forgot-password'], navigationExtras);
+          },
+          error => {
+            navigationExtras.queryParams.hasError = true;
+            this.router.navigate(['/security/post-forgot-password'], navigationExtras);
+          }
+        )
     }
   }
 }
