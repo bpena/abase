@@ -70,7 +70,8 @@
       </mat-error>    
     </mat-form-field>
     
-    <button type="submit" mat-raised-button class="full-width" color="primary">Sign up</button>
+    <button type="submit" mat-raised-button [disabled]="!form.valid"
+      class="full-width" color="primary">Sign up</button>
   </form>
   <div class="spacer"></div>
   <span class="left full-width">

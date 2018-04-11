@@ -20,10 +20,6 @@ html{
             width: 100%;
         }
 
-        .mat-input-prefix {
-            margin-right: 5px;
-        }
-
         .extend {
             flex: 3;
         }
@@ -38,6 +34,17 @@ html{
                 min-width: initial;
                 padding: 0;
             }
+        }
+
+        .mat-form-field {
+
+            .mat-input-element {
+                padding-bottom: 4px;
+            }
+
+            .mat-input-prefix {
+                margin-right: 5px;
+            }    
         }
 
         .mat-error {

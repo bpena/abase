@@ -6,6 +6,10 @@ import { UserListComponent } from '@security/views/user-list/user-list.component
 import { AuthGuard } from '@security/services/auth.guard';
 import { AccountConfirmationComponent } from '@security/views/account-confirmation/account-confirmation.component';
 import { PostSignupComponent } from '@security/views/post-signup/post-signup.component';
+import { ForgotPasswordComponent } from '@security/views/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from '@security/views/reset-password/reset-password.component';
+import { PostResetPasswordComponent } from '@security/views/post-reset-password/post-reset-password.component';
+import { PostForgotPasswordComponent } from '@security/views/post-forgot-password/post-forgot-password.component';
 
 const ROUTES: Routes = [
     {
@@ -17,6 +21,10 @@ const ROUTES: Routes = [
             { path: 'account-activation/:activationHash', component: AccountConfirmationComponent },
             { path: 'post-signup', component: PostSignupComponent },
             { path: 'user/list', component: UserListComponent, canActivate: [AuthGuard] },
+            { path: 'forgot-password', component: ForgotPasswordComponent },
+            { path: 'post-forgot-password', component: PostForgotPasswordComponent },
+            { path: 'password-reset/:hash', component: ResetPasswordComponent },
+            { path: 'post-reset-password', component: PostResetPasswordComponent }
         ]
     }
 ];

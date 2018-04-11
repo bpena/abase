@@ -8,7 +8,7 @@ import {
     hashSync as hash,
     compareSync as comparePasswords
 } from 'bcryptjs'
-import { generateHash, sendActivationEmail } from '../utils'
+import { generateHash, sendActivationEmail, ofuscateUser } from '../utils'
 import { UserStatus } from '../commons'
 
 const app = express.Router()
@@ -51,18 +51,11 @@ app.post('/signin', async (req, res, next) => {
     // add current user to logged user list
     loggedUsers[token] = user
 
-    res.status(200).json({
-        message: 'Login succeded',
-        token: token,
-        userId: user._id,
-        firstname: user.firstname,
-        lastname: user.lastname,
-        email: user.email,
-        uusername: user.username,
-        displayname: `${user.firstname} ${user.lastname}`,
-        status: user.status,
-        hashActivator: generateHash()
-    })
+    const response = ofuscateUser(user)
+    response.message = 'Login succeded'
+    response.token = token
+
+    res.status(200).json(response)
 })
 
 // POST /api/v1/auth/signout
@@ -100,18 +93,12 @@ app.post('/signup', async (req, res, next) => {
     loggedUsers[token] = user
 
     sendActivationEmail(user)
+
+    const response = ofuscateUser(user)
+    response.message = 'User saved'
+    response.token = token 
     
-    res.status(201).json({
-        message: 'User saved',
-        token,
-        userId: user._id,
-        firstname,
-        lastname,
-        email,
-        username,
-        displayname: (user.firstname + ' ' + user.lastname),
-        status: user.status
-    })
+    res.status(201).json(response)
 })
 
 const handleError = (error, res) => {

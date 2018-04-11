@@ -32,7 +32,7 @@ export class SigninComponent implements OnInit {
       this.authService.signin(user)
         .subscribe(
           value => {
-            const urlRedirect = value.redirectTo || Constants.URL_AFTER_LOGIN_SUCCESS;
+            const urlRedirect = value.redirectTo || localStorage.getItem('urlRedirect') || Constants.URL_AFTER_LOGIN_SUCCESS;
             this.router.navigateByUrl(urlRedirect);
           },
           error => console.log('signin ::: ', error)

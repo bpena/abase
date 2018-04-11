@@ -9,22 +9,23 @@
   <form [formGroup]="signinForm" (ngSubmit)="onSubmit(form)" #form="ngForm">
     <mat-form-field class="full-width">
       <mat-icon matPrefix>person</mat-icon>
-      <input type="text" matInput
+      <input type="text" matInput placeholder="Username"
         formControlName="username"
         #username>
     </mat-form-field>
   
     <mat-form-field class="full-width">
       <mat-icon matPrefix>lock</mat-icon>
-      <input type="password" matInput
+      <input type="password" matInput placeholder="Password"
         formControlName="password"
         #password>
     </mat-form-field>
 
-    <button type="submit" mat-raised-button 
+    <button type="submit" mat-raised-button [disabled]="!form.valid"
       class="full-width" color="primary">Log In</button>
+
     <span class="left full-width">
-      <a mat-button color="accent" class="full-width" routerLink=".">Forgot Password?</a>
+      <a mat-button color="accent" class="full-width" routerLink="../forgot-password">Forgot Password?</a>
     </span>
   </form>
   <div class="spacer"></div>

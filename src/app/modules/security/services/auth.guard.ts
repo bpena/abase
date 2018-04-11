@@ -10,6 +10,9 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    return this.authService.validateToken().map(isValid => isValid);
+    return this.authService.validateToken().map(isValid => {
+      isValid ? localStorage.removeItem('urlRedirect') : localStorage.setItem('urlRedirect', state.url);
+      return isValid;
+    });
   }
 }
