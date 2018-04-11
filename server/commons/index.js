@@ -1,7 +1,7 @@
 export const UserStatus = {
     UNCONFIRMED: 'unconfirmed',
     ACTIVATED: 'activated',
-    RESTARTED: 'restarted'
+    RESETED: 'reseted'
 }
 
-export const ACTIVATION_TIME = 24 * 60 // 24 hours multiply by 60 minutes
+export const VALIDATION_TIME = 24 * 60 // 24 hours multiply by 60 minutes

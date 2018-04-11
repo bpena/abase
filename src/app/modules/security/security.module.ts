@@ -15,6 +15,8 @@ import { AccountConfirmationComponent } from './views/account-confirmation/accou
 import { PostSignupComponent } from './views/post-signup/post-signup.component';
 import { NotFoundComponent } from './views/not-found/not-found.component';
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
+import { PostResetPasswordComponent } from './views/post-reset-password/post-reset-password.component';
 
 @NgModule({
   imports: [
@@ -39,7 +41,9 @@ import { ForgotPasswordComponent } from './views/forgot-password/forgot-password
     AccountConfirmationComponent,
     PostSignupComponent,
     NotFoundComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    PostResetPasswordComponent
   ],
   exports: [
     UserMenuComponent

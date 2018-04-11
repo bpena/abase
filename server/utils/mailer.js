@@ -84,3 +84,78 @@ export const sendActivationEmail = (user) => {
         }
     })
 }
+
+
+export const sendResetPasswordEmail = (user) => {
+    const changePasswordUrl = `http://localhost:4200/security/password/reset/${user.hashActivator}`
+
+    const mailOptions = {
+        from: 'bernardo.pena.ramos@gmail.com',
+        to: user.email,
+        subject: 'Reset Password',
+        html: `
+            <table style="border-spacing:0;border-collapse:collapse;font-family:proxima-nova,'helvetica neue',helvetica,arial,geneva,sans-serif;height:100%;width:600px;color:#4c4c4c;font-size:15px;line-height:150%;background:#ffffff;margin:40px 0;padding:0;border:0">
+                <tbody>
+                    <tr style="vertical-align:top;padding:0">
+                        <td align="center" valign="top" style="vertical-align:top;padding:0 40px">
+                            <table style="border-spacing:0;border-collapse:collapse;font-family:proxima-nova,'helvetica neue',helvetica,arial,geneva,sans-serif;height:100%;width:100%;background:#ffffff;margin:0;padding:0;border:0">
+                                <tbody>
+                                    <tr style="vertical-align:top;padding:0">
+                                        <td style="vertical-align:top;text-align:left;padding:0" align="left" valign="top">
+                                            <h1 style="color:#6e5baa;display:block;font-family:hybrea,proxima-nova,'helvetica neue',helvetica,arial,geneva,sans-serif;font-size:32px;font-weight:200;text-align:left;margin:0 0 40px" align="left">
+                                                <img src="${logoUrl}" alt="${appName}" width="120" height="42" style="outline:none;text-decoration:none;border:0" class="CToWUd">
+                                            </h1>
+
+                                            <p style="margin:20px 0">
+                                                You told us you forgot your password. If you really did, click here to choose a new one:
+                                            </p>
+
+                                            <p style="margin:20px 0">
+                                                <a href="${changePasswordUrl}" style="color:#6e5baa" target="_blank" 
+                                                    data-saferedirecturl="https://www.google.com/url?hl=es&amp;q=${changePasswordUrl}&amp;source=gmail&amp;ust=1523308870817000&amp;usg=AFQjCNHgJC1Lz2J358UuQgmsWWLGxFNZqQ">${changePasswordUrl}</a>
+                                            </p>
+                                            
+                                            <p style="margin:20px 0">
+                                                If you didn't mean to reset your password, then you can just ignore this email; your password will not change.
+                                            </p>
+
+                                            <p style="margin:20px 0">
+                                                The <b>${appName}</b> Team<br>
+                                                <a href="${appUrl}" style="color:#6e5baa" target="_blank" 
+                                                    data-saferedirecturl="https://www.google.com/url?hl=es&amp;q=${appUrl}&amp;source=gmail&amp;ust=1523308870817000&amp;usg=AFQjCNEm3vLHPNGRp6wnmfpw4pCu02Gtlg">${appUrl}</a>
+                                            </p>
+                                            <p></p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr style="vertical-align:top;padding:0">
+                        <td align="center" valign="top" style="vertical-align:top;padding:0 40px">
+                            <table style="border-spacing:0;border-collapse:collapse;font-family:proxima-nova,'helvetica neue',helvetica,arial,geneva,sans-serif;height:100%;width:100%;border-top-style:solid;border-top-color:#ebeaef;color:#999999;font-size:12px;background:#ffffff;margin:0;padding:0;border-width:1px 0 0">
+                                <tbody>
+                                    <tr style="vertical-align:top;padding:0">
+                                        <td valign="top" style="vertical-align:top;text-align:left;padding:0" align="left">
+                                            <p style="margin:20px 0">
+                                                <b>${appName} is the base <b>mean</b> for rapid deployment of web applications.
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+       `
+    }
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            debug(error)
+        } else {
+            debug(info)
+        }
+    })
+}

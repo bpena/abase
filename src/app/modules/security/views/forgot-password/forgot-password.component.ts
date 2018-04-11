@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import { AuthService } from '@security/services/auth.service';
 import { Router } from '@angular/router';
+import { UserService } from '@security/services/user.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -12,8 +12,8 @@ export class ForgotPasswordComponent implements OnInit {
 
   forgotPasswordForm: FormGroup;
 
-  constructor(private authService: AuthService,
-            private router: Router) { }
+  constructor(private router: Router,
+            private userService: UserService) { }
 
   ngOnInit() {
     this.forgotPasswordForm = new FormGroup({
@@ -26,6 +26,9 @@ export class ForgotPasswordComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (form.valid) {
+      const { email } = form.value;
+      this.userService.restorePassword(email)
+        .subscribe(value => console.log(value))
     }
   }
 }
