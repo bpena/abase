@@ -4,7 +4,7 @@ import { handleError } from '../utils';
 import { User } from '../models'
 import { generateHash } from '../utils'
 import { UserStatus, VALIDATION_TIME } from '../commons'
-import { sendResetPasswordEmail } from '../utils'
+import { sendResetPasswordEmail, ofuscateUser } from '../utils'
 import { hashed, validHash } from '../middlewares'
 import {
     hashSync as hash
@@ -22,7 +22,8 @@ app.get('/', async (req, res, next) => {
 // GET /api/v1/user/:id
 app.get('/:id', async (req, res, next) => {
     try {
-        const user = await User.findOne({ 'id': req.params.id })
+        debug(req.params.id)
+        const user = ofuscateUser(await User.findOne({ '_id': req.params.id }))
         res.status(200).json(user)
     } catch (error) {
         handleError(error, res)
@@ -35,31 +36,15 @@ app.get('/activate/:hash', hashed, validHash, async (req, res, next) => {
     _user.hashActivator = null
     _user.hashDate = null
     _user.status = UserStatus.ACTIVATED
-    const saved = await _user.save()
-    const { _id, username, firstname, lastname, email, status } = saved
-    res.status(200).json({
-        _id,
-        username,
-        firstname,
-        lastname,
-        email,
-        status
-    })
+    const saved = ofuscateUser(await _user.save())
+    res.status(200).json(saved)
 })
 
 // GET /api/v1/user/reset/:hash
 // validate reset hash and return user if hash is valid 
 app.get('/reset/:hash', hashed, validHash, async (req, res, next) => {
-    const _user = await User.findOne({'hashActivator': req.params.hash})
-    const { _id, username, firstname, lastname, email, status } = _user
-    res.status(200).json({
-        _id,
-        username,
-        firstname,
-        lastname,
-        email,
-        status
-    })
+    const _user = ofuscateUser(await User.findOne({'hashActivator': req.params.hash}))
+    res.status(200).json(_user)
 })
 
 // POST /api/v1/user/reset
@@ -72,7 +57,7 @@ app.post('/reset', async (req, res, next) => {
         _user.hashDate = new Date().getTime()
         _user.hashActivator = generateHash()
 
-        const user = await _user.save()
+        const user = ofuscateUser(await _user.save())
 
         sendResetPasswordEmail(user)
 
@@ -93,7 +78,7 @@ app.put('/:id/password', async (req, res, next) => {
     try {
         const user = await User.findOne({ '_id': req.params.id })
         user.password = password
-        const saved = await user.save()
+        const saved = ofuscateUser(await user.save())
         res.status(200).json(user)
     } catch (error) {
         handleError(error, res)
