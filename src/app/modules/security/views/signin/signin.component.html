@@ -21,8 +21,9 @@
         #password>
     </mat-form-field>
 
-    <button type="submit" mat-raised-button 
+    <button type="submit" mat-raised-button [disabled]="!form.valid"
       class="full-width" color="primary">Log In</button>
+
     <span class="left full-width">
       <a mat-button color="accent" class="full-width" routerLink="../forgot-password">Forgot Password?</a>
     </span>
