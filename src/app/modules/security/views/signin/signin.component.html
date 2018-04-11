@@ -9,14 +9,14 @@
   <form [formGroup]="signinForm" (ngSubmit)="onSubmit(form)" #form="ngForm">
     <mat-form-field class="full-width">
       <mat-icon matPrefix>person</mat-icon>
-      <input type="text" matInput
+      <input type="text" matInput placeholder="Username"
         formControlName="username"
         #username>
     </mat-form-field>
   
     <mat-form-field class="full-width">
       <mat-icon matPrefix>lock</mat-icon>
-      <input type="password" matInput
+      <input type="password" matInput placeholder="Password"
         formControlName="password"
         #password>
     </mat-form-field>
