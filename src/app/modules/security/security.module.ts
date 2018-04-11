@@ -13,6 +13,12 @@ import { UserService } from '@security/services/user.service';
 import { AuthGuard } from '@security/services/auth.guard';
 import { AccountConfirmationComponent } from './views/account-confirmation/account-confirmation.component';
 import { PostSignupComponent } from './views/post-signup/post-signup.component';
+import { NotFoundComponent } from './views/not-found/not-found.component';
+import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
+import { PostResetPasswordComponent } from './views/post-reset-password/post-reset-password.component';
+import { ForgotPasswordMessageComponent } from './views/forgot-password-message/forgot-password-message.component';
+import { PostForgotPasswordComponent } from './views/post-forgot-password/post-forgot-password.component';
 
 @NgModule({
   imports: [
@@ -35,7 +41,13 @@ import { PostSignupComponent } from './views/post-signup/post-signup.component';
     UserMenuComponent,
     UserListComponent,
     AccountConfirmationComponent,
-    PostSignupComponent
+    PostSignupComponent,
+    NotFoundComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    PostResetPasswordComponent,
+    ForgotPasswordMessageComponent,
+    PostForgotPasswordComponent
   ],
   exports: [
     UserMenuComponent
