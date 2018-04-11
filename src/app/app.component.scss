@@ -5,6 +5,11 @@
 
     .container {
         @include flex-column();
+
+        .logo {
+            color: inherit;
+            text-decoration: none;
+        }
         
         .sidenav-container {
             @include flex-column();

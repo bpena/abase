@@ -4,7 +4,7 @@
       <button mat-icon-button *ngIf="isLogged | async" (click)="snav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <h1 class="app-name">{{ title }}</h1>
+      <h1 class="app-name"><a color="accent" class="logo" routerLink="/">{{ title }}</a></h1>
       <span class="spacer"></span>
       
       <app-user-menu></app-user-menu>
