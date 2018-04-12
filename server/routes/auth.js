@@ -51,9 +51,11 @@ app.post('/signin', async (req, res, next) => {
     // add current user to logged user list
     loggedUsers[token] = user
 
-    const response = ofuscateUser(user)
-    response.message = 'Login succeded'
-    response.token = token
+    const response = {
+        user: ofuscateUser(user),
+        message: 'Login succeded',
+        token: token
+    }
 
     res.status(200).json(response)
 })
@@ -94,9 +96,11 @@ app.post('/signup', async (req, res, next) => {
 
     sendActivationEmail(user)
 
-    const response = ofuscateUser(user)
-    response.message = 'User saved'
-    response.token = token 
+    const response = {
+        user: ofuscateUser(user),
+        message: 'User saved',
+        token: token
+    }
     
     res.status(201).json(response)
 })
