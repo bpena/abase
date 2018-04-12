@@ -24,17 +24,10 @@ export class AuthService {
     this.currentUser$ = new BehaviorSubject(user);
   }
 
-  private login = ({token, userId, username, firstname, lastname, email, displayname}) => {
-    this.currentUser$.next({
-      username,
-      firstname,
-      lastname,
-      email,
-      _id: userId,
-      displayname
-    });
+  private login = ({ token, user }) => {
+    this.currentUser$.next(new User(user));
     localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify({ userId, username, firstname, lastname, email, displayname }));
+    localStorage.setItem('user', JSON.stringify(user));
     this.logged.next(true);
   }
 
