@@ -14,7 +14,7 @@
         
         .sidenav-container {
             @include flex-column();
-            background-color: rgba($sec-app-theme-bg, $sec-app-transparency);
+            background-color: rgba($app-background, $app-transparency);
             overflow: hidden;
 
             .mat-sidenav-content {
