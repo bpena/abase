@@ -1,22 +1,8 @@
 @import '~@angular/material/theming';
-@import '~styles/variables';
+@import '~styles/paletes';
+@import '~styles/typography';
 
 // Plus imports for other components in your app.
-
-// Define a custom typography config that overrides the font-family as well as the
-// `headlines` and `body-1` levels.
-/*
-$custom-typography: mat-typography-config(
-  $font-family: 'Raleway, monospace',
-  $headline: mat-typography-level(32px, 48px, 700),
-  $body-1: mat-typography-level(16px, 24px, 400)
-);
-/*/
-$custom-typography: mat-typography-config(
-  $font-family: 'Roboto, monospace',
-  $headline: mat-typography-level(32px, 48px, 700),
-  $body-1: mat-typography-level(16px, 24px, 200)
-);
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
@@ -25,37 +11,7 @@ $custom-typography: mat-typography-config(
 // Override the typography in the core CSS.
 @include mat-core($custom-typography);
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://www.google.com/design/spec/style/color.html
-$app-primary: mat-palette($mat-light-blue);
-// $app-accent:  mat-palette($mat-pink, A200, A100, A400);
-$app-accent:  mat-palette($mat-cyan, 800, 700, 900);
-
-// The warn palette is optional (defaults to red).
-$app-warn:    mat-palette($mat-red);
-
-// Create the theme object (a Sass map containing all of the palettes).
-$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
-$sec-app-theme-bg: $app-theme(background);
-
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($app-theme);
-
-
-$sec-app-primary: mat-palette($mat-blue-grey);
-$sec-app-accent:  mat-palette($mat-indigo, 500, 900, A100);
-$sec-app-warn:    mat-palette($mat-deep-orange);
-
-$sec-app-theme: mat-light-theme($sec-app-primary, $sec-app-accent, $sec-app-warn);
-
-
-// Include the alternative theme styles inside of a block with a CSS class. You can make this
-// CSS class whatever you want. In this example, any component inside of an element with
-// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
-.alternate-theme {
-  @include angular-material-theme($sec-app-theme);
-//  @include angular-material-theme($dark-theme);
-}
