@@ -1,2 +1,6 @@
-$app-background: #000;
+@import '~styles/paletes';
+
+$app-background-theme: map-get($app-theme, background);
+$app-background: mat-color($app-background-theme, background) !default;
+
 $app-transparency: 0.5;
