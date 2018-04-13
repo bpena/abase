@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post-forgot-password',
+  host: { 'class': 'view-component' },
   templateUrl: './post-forgot-password.component.html',
   styleUrls: ['./post-forgot-password.component.scss']
 })

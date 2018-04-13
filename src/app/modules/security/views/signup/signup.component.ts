@@ -8,6 +8,7 @@ import { Constants } from '@core/utils/constants';
 
 @Component({
   selector: 'app-signup',
+  host: { 'class': 'view-component' },
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
