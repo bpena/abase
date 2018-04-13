@@ -5,6 +5,17 @@
     flex-direction: row-reverse;
     padding: 5px 10px 5px;
 
+    .logo {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+
+        img { 
+            max-width: 60%;
+        }
+    }
+
     .is-mobile & {
         padding: 0;
     }
