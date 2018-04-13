@@ -2,6 +2,7 @@
 @import '~styles/variables';
 @import '~styles/visual-components';
 @import '~styles/forms';
+@import '~styles/miscellaneous';
 
 html{
     @include flex-column();
@@ -18,14 +19,9 @@ html{
         margin: 0;
         overflow: hidden;
 
-        .spacer {
-            flex: 1 1 auto;
-        }
-
-        .full-width {
-            display: block;
-            width: 100%;
-        }
+        @include visual-components();
+        @include forms();
+        @include miscellaneous();
 
         .extend {
             flex: 3;

@@ -1,27 +1,24 @@
 @import '~styles/functions';
 
-html {
-    body {
-        .view-component {
-            @include flex-column();
-            flex-direction: row-reverse;
-            padding: 5px 10px 5px;
 
-            .logo {
-                display: flex;
-                flex: 1;
-                flex-direction: column;
-                align-items: center;
+@mixin visual-components() {
+    .view-component {
+        @include flex-column();
+        flex-direction: row;
+        padding: 5px 10px 5px;
 
-                img { 
-                    max-width: 60%;
-                }
-            }
+        @media (max-width: $mobile-width) {
+            padding: 0;
         }
 
-        @media (max-width: 600px) {
-            .view-component {
-                padding: 0;
+        .logo {
+            align-items: center;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+
+            img { 
+                max-width: 60%;
             }
         }
     }

@@ -1,5 +1,7 @@
 @import '~styles/paletes';
 
+$mobile-width: 600px;
+
 $app-background-theme: map-get($app-theme, background);
 $app-background: mat-color($app-background-theme, background) !default;
 
