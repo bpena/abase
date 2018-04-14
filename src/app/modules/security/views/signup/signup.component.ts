@@ -51,7 +51,7 @@ export class SignupComponent implements OnInit {
             const urlRedirect = value.redirectTo || Constants.URL_AFTER_SIGNUP_SUCCESS;
             const navigationExtras: NavigationExtras = {
               queryParams: {
-                user: JSON.stringify(new User(value)),
+                user: JSON.stringify(new User(value.user)),
                 hasError: false
               }
             };
