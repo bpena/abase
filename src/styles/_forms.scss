@@ -1,36 +1,11 @@
 @import '~styles/variables';
 
 @mixin forms() {
-    .mat-card {
-        @include flex-column();
-        background-color: rgba($app-background, $app-transparency);
-    }
-
     .form {
-        @include flex-column();
-        box-sizing: border-box;
-        min-width: 500px;
-        overflow: auto;
-    
-        @media (max-width: $mobile-width) {
-            @include flex-column();
-            min-width: initial;
-        }
-    
         a {
             font-weight: bold;
             min-width: initial;
             padding: 0;
-        }
-    }
-
-
-    .extend {
-        flex: 3;
-        opacity: 0;
-        
-        @media (max-width: $mobile-width) {
-            display: none !important;
         }
     }
     

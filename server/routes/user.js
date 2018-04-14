@@ -79,6 +79,9 @@ app.put('/:id/password', async (req, res, next) => {
     try {
         const user = await User.findOne({ '_id': req.params.id })
         user.password = password
+        user.status = UserStatus.ACTIVATED
+        user.hashDate = null
+        user.hashActivator = null
         const saved = ofuscateUser(await user.save())
         res.status(200).json(user)
     } catch (error) {

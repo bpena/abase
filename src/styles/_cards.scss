@@ -1,0 +1,42 @@
+@import '~styles/variables';
+
+@mixin cards() {
+    .mat-card {
+        @include flex-column();
+        background-color: rgba($app-background, $app-transparency);
+    }
+
+    .form {
+        @include flex-column();
+        box-sizing: border-box;
+        min-width: 500px;
+        overflow: auto;
+    
+        @media (max-width: $mobile-width) {
+            @include flex-column();
+            min-width: initial;
+        }
+    }
+
+
+    .extend {
+        flex: 3;
+        opacity: 0;
+        
+        @media (max-width: $mobile-width) {
+            display: none !important;
+        }
+    }
+
+    .content {
+        margin: 0 auto;
+        max-width: 50%;
+        min-width: 500px;
+
+        @media (max-width: $mobile-width) {
+            @include flex-column();
+            max-width: initial;
+            min-width: initial;
+        }
+    }
+}
