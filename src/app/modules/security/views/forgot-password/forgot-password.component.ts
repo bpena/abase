@@ -42,6 +42,7 @@ export class ForgotPasswordComponent implements OnInit {
           },
           error => {
             navigationExtras.queryParams.hasError = true;
+            navigationExtras.queryParams.errorMessage = error.errMsg;
             this.router.navigate(['/security/post-forgot-password'], navigationExtras);
           }
         )
