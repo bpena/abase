@@ -23,7 +23,7 @@ const ROUTES: Routes = [
             { path: 'user/list', component: UserListComponent, canActivate: [AuthGuard] },
             { path: 'forgot-password', component: ForgotPasswordComponent },
             { path: 'post-forgot-password', component: PostForgotPasswordComponent },
-            { path: 'password-reset/:hash', component: ResetPasswordComponent },
+            { path: 'password/reset/:hash', component: ResetPasswordComponent },
             { path: 'post-reset-password', component: PostResetPasswordComponent }
         ]
     }
