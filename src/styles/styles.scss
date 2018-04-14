@@ -3,6 +3,7 @@
 @import '~styles/visual-components';
 @import '~styles/forms';
 @import '~styles/miscellaneous';
+@import '~styles/cards';
 
 html{
     @include flex-column();
@@ -20,6 +21,7 @@ html{
         overflow: hidden;
 
         @include visual-components();
+        @include cards();
         @include forms();
         @include miscellaneous();
     }
