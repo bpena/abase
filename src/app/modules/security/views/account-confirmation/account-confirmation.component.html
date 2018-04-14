@@ -1,4 +1,7 @@
 <mat-card class="content">
+  <div class="logo">
+    <img src="/assets/images/logo.png" alt="bbase">
+  </div>
   <h2>Activation Account</h2>
   <div *ngIf="hasError; else no_error">
     <h3>There is a small problem</h3>
@@ -11,4 +14,5 @@
     <hr>
     <h4>Your account is already activated. <a mat-button color="accent" routerLink="/security/signin">Log in</a></h4>
   </ng-template>
+  <div class="spacer"></div>
 </mat-card>
