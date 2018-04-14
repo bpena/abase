@@ -1,15 +1,16 @@
 import express from 'express'
 import Debug from 'debug'
 import jwt from 'jsonwebtoken'
+import { handleError } from '../utils';
 import { secret } from '../config'
-import { required } from '../middlewares'
+import { required, requestUser, noRegisteredUsername, noRegisteredEmail } from '../middlewares'
 import { User } from '../models'
 import {
     hashSync as hash,
     compareSync as comparePasswords
 } from 'bcryptjs'
 import { generateHash, sendActivationEmail, ofuscateUser } from '../utils'
-import { UserStatus } from '../commons'
+import { UserStatus, Error } from '../commons'
 
 const app = express.Router()
 const debug = new Debug('server::auth-route')
@@ -34,17 +35,17 @@ app.post('/signin', async (req, res, next) => {
 
     if (!user) {
         debug(`User with username ${username} not found`)
-        return handleError('Email and password don\'t match', res)
+        return handleError(401, 'Login failed', 'Email and password don\'t match', res)
     }
 
     if (!comparePasswords(password, user.password)) {
         debug(`Password do not match ${password} !== ${user.password}`)
-        return handleError('Email and password don\'t match', res)
+        return handleError(401, 'Login failed', 'Email and password don\'t match', res)
     }
 
     if (user.status === UserStatus.UNCONFIRMED) {
         debug(`User ${user} is unconfirmed`)
-        return handleError(`User is unconfirmed`, res)
+        return handleError(401, 'Login failed', `User is unconfirmed`, res)
     }
 
     const token = createToken(user)
@@ -73,43 +74,33 @@ app.post('/signout', required, (req, res, next) => {
 })
 
 // POST /api/v1/auth/signup
-app.post('/signup', async (req, res, next) => {
-    const { username, password, firstname, lastname, email } = req.body
-    const newUser = new User({
-        firstname,
-        lastname,
-        email,
-        username,
-        password: hash(password, 10),
-        hashDate: new Date().getTime(),
-        hashActivator:  generateHash(),
-        status: UserStatus.UNCONFIRMED
-        })
-
+app.post('/signup', requestUser, noRegisteredUsername, noRegisteredEmail, async (req, res, next) => {
+    const newUser = req.user
+    
     debug(`Creating new user ${newUser}`)
     
-    const user = await newUser.save()
-    const token = createToken(user)
-
-    // add current user to logged user list
-    loggedUsers[token] = user
-
-    sendActivationEmail(user)
-
-    const response = {
-        user: ofuscateUser(user),
-        message: 'User saved',
-        token: token
-    }
+    try {
+        const user = await newUser.save()
     
-    res.status(201).json(response)
+        const token = createToken(user)
+    
+        // add current user to logged user list
+        loggedUsers[token] = user
+    
+        sendActivationEmail(user)
+    
+        const response = {
+            user: ofuscateUser(user),
+            message: 'User saved',
+            token: token
+        }
+        
+        res.status(201).json(response)
+    }
+    catch(error) {
+        debug(`error: ${error}`)
+        return handleError(500, error.name, error.errmsg, res)
+    }
 })
-
-const handleError = (error, res) => {
-    return res.status(401).json({
-        message: 'Login failed',
-        error: error
-    })
-}
 
 export default app
