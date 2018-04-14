@@ -9,7 +9,7 @@
     .form {
         @include flex-column();
         box-sizing: border-box;
-        min-width: 360px;
+        min-width: 500px;
         overflow: auto;
     
         @media (max-width: $mobile-width) {
