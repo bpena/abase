@@ -5,4 +5,7 @@ $mobile-width: 600px;
 $app-background-theme: map-get($app-theme, background);
 $app-background: mat-color($app-background-theme, background) !default;
 
+$app-primary-color: mat-color($app-primary, default) !default;
+$app-accent-color: mat-color($app-accent, default) !default;
+
 $app-transparency: 0.5;

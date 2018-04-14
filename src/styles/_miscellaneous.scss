@@ -1,3 +1,5 @@
+@import '~styles/variables';
+
 @mixin miscellaneous() {
     .spacer {
         flex: 1 1 auto;
@@ -9,6 +11,7 @@
     }
 
     hr {
+        border-color: $app-accent-color;
         width: 100%;
     }
 }

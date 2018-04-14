@@ -23,6 +23,16 @@
             padding: 0;
         }
     }
+
+
+    .extend {
+        flex: 3;
+        opacity: 0;
+        
+        @media (max-width: $mobile-width) {
+            display: none !important;
+        }
+    }
     
     .mat-form-field {
         .mat-input-element {

@@ -12,13 +12,11 @@
         }
 
         .logo {
+            @include flex-column();
             align-items: center;
-            display: flex;
-            flex: 1;
-            flex-direction: column;
 
             img { 
-                max-width: 60%;
+                max-height: 100%;
             }
         }
     }

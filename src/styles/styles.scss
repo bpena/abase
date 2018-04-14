@@ -22,16 +22,5 @@ html{
         @include visual-components();
         @include forms();
         @include miscellaneous();
-
-        .extend {
-            flex: 3;
-            opacity: 0;
-        }
-            
-        .is-mobile {
-            .extend {
-                display: none !important;
-            }
-        }
     }
 }

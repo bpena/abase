@@ -1,0 +1,7 @@
+@import '~styles/variables';
+
+:host {
+    span {
+        color: $app-primary-color;
+    }
+}
