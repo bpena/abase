@@ -29,11 +29,14 @@
     }
 
     .content {
-        max-width: 50%;
         margin: 0 auto;
+        max-width: 50%;
+        min-width: 500px;
 
         @media (max-width: $mobile-width) {
+            @include flex-column();
             max-width: initial;
+            min-width: initial;
         }
     }
 }
