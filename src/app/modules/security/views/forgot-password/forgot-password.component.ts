@@ -5,6 +5,7 @@ import { UserService } from '@security/services/user.service';
 
 @Component({
   selector: 'app-forgot-password',
+  host: { 'class': 'view-component' },
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss']
 })
@@ -41,6 +42,7 @@ export class ForgotPasswordComponent implements OnInit {
           },
           error => {
             navigationExtras.queryParams.hasError = true;
+            navigationExtras.queryParams.errorMessage = error.errMsg;
             this.router.navigate(['/security/post-forgot-password'], navigationExtras);
           }
         )

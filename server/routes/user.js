@@ -5,7 +5,7 @@ import { User } from '../models'
 import { generateHash } from '../utils'
 import { UserStatus, VALIDATION_TIME } from '../commons'
 import { sendResetPasswordEmail, ofuscateUser } from '../utils'
-import { hashed, validHash } from '../middlewares'
+import { hashed, validHash, registeredEmail } from '../middlewares'
 import {
     hashSync as hash
 } from 'bcryptjs'
@@ -22,11 +22,13 @@ app.get('/', async (req, res, next) => {
 // GET /api/v1/user/:id
 app.get('/:id', async (req, res, next) => {
     try {
-        debug(req.params.id)
         const user = ofuscateUser(await User.findOne({ '_id': req.params.id }))
+        if (!user) {
+            return handleError(404, 'User not found', `No user founded with _id ${req.params.id}`)
+        }
         res.status(200).json(user)
     } catch (error) {
-        handleError(error, res)
+        return handleError(error.code, error.name, error.errMsg, res)
     }
 })
 
@@ -49,10 +51,9 @@ app.get('/reset/:hash', hashed, validHash, async (req, res, next) => {
 
 // POST /api/v1/user/reset
 // send email with reset password link and update status, hashDate and hashActivator
-app.post('/reset', async (req, res, next) => {
-    const { email } = req.body
-    const _user = await User.findOne({'email': email})
-    if (_user && _user.status !== UserStatus.UNCONFIRMED) {
+app.post('/reset', registeredEmail, async (req, res, next) => {
+    const _user = req.user
+    if (_user.status !== UserStatus.UNCONFIRMED) {
         _user.status = UserStatus.RESETED
         _user.hashDate = new Date().getTime()
         _user.hashActivator = generateHash()
@@ -66,7 +67,7 @@ app.post('/reset', async (req, res, next) => {
         })
     }
     else {
-        handleError(`No user associated to ${email}`, res)
+        return handleError(404, 'Unconfirmed User', 'This email belongs to a user who has not been confirmed', res)
     }
 })
 
@@ -81,7 +82,7 @@ app.put('/:id/password', async (req, res, next) => {
         const saved = ofuscateUser(await user.save())
         res.status(200).json(user)
     } catch (error) {
-        handleError(error, res)
+        handleError(error.code, error.name, error.errMsg, res)
     }
 })
 

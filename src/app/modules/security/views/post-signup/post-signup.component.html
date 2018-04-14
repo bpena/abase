@@ -1,7 +1,6 @@
 <mat-card class="content">
-  <h2>Hello {{ user?.displayname }}</h2>
-
-  <h3>Thanks for registering!</h3>
+  <h2>Hello <span color="primary">{{ user?.displayname }}</span></h2>
   <hr>
-  <h4>Your account is not active yet. An activation link has been sent to {{ user?.email }}, along with instructions to activate your account.</h4>
+  <h3>Thanks for registering!</h3>
+  <h4>Your account is not active yet. An activation link has been sent to <span color="primary">{{ user?.email }}</span>, along with instructions to activate your account.</h4>
 </mat-card>

@@ -7,6 +7,7 @@ import { Constants } from '@core/utils/constants';
 
 @Component({
   selector: 'app-signin',
+  host: { 'class': 'view-component' },
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.scss']
 })

@@ -7,6 +7,7 @@ import { User } from '@security/model/user';
 
 @Component({
   selector: 'app-reset-password',
+  host: { 'class': 'view-component' },
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss']
 })

@@ -4,6 +4,7 @@ import { User } from '@security/model/user';
 
 @Component({
   selector: 'app-user-list',
+  host: { 'class': 'view-component' },
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
