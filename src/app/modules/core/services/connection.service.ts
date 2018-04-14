@@ -82,17 +82,17 @@ export class ConnectionService {
   }
 
   private handleError(error: any, _this?: any): void {
-    const { error: { name }, message, redirectTo } = error.json();
+    const { errName, errMsg, redirectTo } = error.json();
 
-    const errTitle = name || 'Server Error';
-    let errMsg = '';
+    const errTitle = errName || 'Server Error';
+    let _errMsg = '';
 
-    if (name === 'TokenExpiredError') {
-      errMsg = 'Tu sesión ha expirado';
-    } else if (name === 'JsonWebTokenError') {
-      errMsg = 'Ha habido un problema con tu sesión';
+    if (errName === 'TokenExpiredError') {
+      _errMsg = 'Tu sesión ha expirado';
+    } else if (errName === 'JsonWebTokenError') {
+      _errMsg = 'Ha habido un problema con tu sesión';
     } else {
-      errMsg = message || 'Ha ocurrido un error. Inténtalo nuevamente';
+      _errMsg = errMsg || 'Ha ocurrido un error. Inténtalo nuevamente';
     }
     
     _this.snackBar.openFromComponent(WarningSnackbarComponent, {

@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-post-signup',
+  host: { 'class': 'view-component' },
   templateUrl: './post-signup.component.html',
   styleUrls: ['./post-signup.component.scss']
 })

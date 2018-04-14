@@ -1,5 +1,8 @@
 @import '~styles/functions';
 @import '~styles/variables';
+@import '~styles/visual-components';
+@import '~styles/forms';
+@import '~styles/miscellaneous';
 
 html{
     @include flex-column();
@@ -16,57 +19,8 @@ html{
         margin: 0;
         overflow: hidden;
 
-        .spacer {
-            flex: 1 1 auto;
-        }
-
-        .full-width {
-            display: block;
-            width: 100%;
-        }
-
-        .extend {
-            flex: 3;
-            opacity: 0;
-        }
-
-        .form {
-            @include flex-column();
-            background-color: rgba($app-background, $app-transparency);
-            min-width: 360px;
-            overflow: auto;
-
-            a {
-                font-weight: bold;
-                min-width: initial;
-                padding: 0;
-            }
-        }
-
-        .mat-form-field {
-
-            .mat-input-element {
-                padding-bottom: 4px;
-            }
-
-            .mat-input-prefix {
-                margin-right: 5px;
-            }    
-        }
-
-        .mat-error {
-            text-align: right;
-        }
-            
-        .is-mobile {
-            .extend {
-                display: none !important;
-            }
-
-            .form {
-                @include flex-column();
-                min-width: initial;
-            }
-        }
+        @include visual-components();
+        @include forms();
+        @include miscellaneous();
     }
 }

@@ -1,11 +1,7 @@
-<mat-card class="extend">
-
-</mat-card>
 <mat-card class="form">
   <div class="logo">
     <img src="/assets/images/logo1.png" alt="bbase">
   </div>
-  <div class="spacer"></div>
   <form [formGroup]="signinForm" (ngSubmit)="onSubmit(form)" #form="ngForm">
     <mat-form-field class="full-width">
       <mat-icon matPrefix>person</mat-icon>
@@ -32,5 +28,8 @@
   <span class="left full-width">
       <small>Don't have an account?</small> <a mat-button color="accent" routerLink="../signup">Create One</a>
   </span>
+
+</mat-card>
+<mat-card class="extend">
 
 </mat-card>

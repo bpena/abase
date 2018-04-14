@@ -5,6 +5,7 @@ import { User } from '@security/model/user';
 
 @Component({
   selector: 'app-account-confirmation',
+  host: { 'class': 'view-component' },
   templateUrl: './account-confirmation.component.html',
   styleUrls: ['./account-confirmation.component.scss']
 })

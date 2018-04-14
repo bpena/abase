@@ -1,9 +1,9 @@
 import crypto from 'crypto'
 
-export const handleError = (error, res) => {
-    res.status(500).json({
-        message: 'An error ocurred',
-        error
+export const handleError = (errCode, errName, errMsg, res) => {
+    res.status(errCode).json({
+        errName,
+        errMsg
     })
 }
 

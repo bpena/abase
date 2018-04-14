@@ -1,0 +1,25 @@
+@import '~styles/variables';
+
+@mixin miscellaneous() {
+    .spacer {
+        flex: 1 1 auto;
+    }
+
+    .full-width {
+        display: block;
+        width: 100%;
+    }
+
+    hr {
+        border-color: $app-accent-color;
+        width: 100%;
+    }
+
+    span[color="primary"] {
+        color: $app-primary-color;
+    }
+
+    span[color="accent"] {
+        color: $app-accent-color;
+    }
+}
