@@ -16,6 +16,11 @@ export class EN {
         ['Do you have an account?', 'Do you have account?'],
         ['{0} is <strong>required</strong>', '{0} is <strong>required</strong>'],
         ['Please enter a valid email address', 'Please enter a valid email address'],
-        ['{0} and {1} <strong>do not match</strong>', '{0} and {1} <strong>do not match</strong>']
+        ['{0} and {1} <strong>do not match</strong>', '{0} and {1} <strong>do not match</strong>'],
+        ['Account Activation', 'Account Activation'],
+        ['There is a small problem', 'There is a small problem'],
+        ['Invalid activation link', 'This activation link isn\'t valid. Perhaps you already used it?'],
+        ['Hi {0}', 'Hi <span color="primary">{0}</span>'],
+        ['Your account is already activated.', 'Your account is already activated.'],
     ])
 }

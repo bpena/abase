@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@security/auth/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '@security/user/model/user';
+import { AuthI18NService } from '@security/auth/i18n/auth-i18n.service';
 
 @Component({
   selector: 'app-account-confirmation',
@@ -15,6 +16,7 @@ export class AccountConfirmationComponent implements OnInit {
 
 
   constructor(private activatedRouter: ActivatedRoute,
+            private i18n: AuthI18NService,
             private authService: AuthService,
             private router: Router) { }
 
@@ -24,8 +26,7 @@ export class AccountConfirmationComponent implements OnInit {
       .subscribe(
         value => {
           this.hasError = false;
-          this.user = value;
-          console.log(value);
+          this.user = new User(value);
         },
         error => this.hasError = true
       )
