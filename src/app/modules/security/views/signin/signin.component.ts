@@ -13,7 +13,6 @@ import { SecurityLanguageService } from '@security/i18n/security-language.servic
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-  private currentLang = 'en';
   signinForm: FormGroup;
 
   constructor(private authService: AuthService,
@@ -41,10 +40,5 @@ export class SigninComponent implements OnInit {
           error => console.log('signin ::: ', error)
         );
     }
-  }
-
-  changeLanguage() {
-    this.currentLang = this.currentLang === 'en' ? 'es' : 'en';
-    this.i18n.changeLanguage(this.currentLang);
   }
 }
