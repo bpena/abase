@@ -3,82 +3,81 @@
     <img src="/assets/images/logo.png" alt="bbase">
   </div>
   
-  <h2>Sign up</h2>
+  <h2>{{ i18n.t('Sign up') }}</h2>
   <form [formGroup]="signupForm" (ngSubmit)="onSubmit(form)" #form="ngForm">
     <mat-form-field class="full-width">
         <input type="text" matInput 
-        placeholder="Username"
+        placeholder="{{ i18n.t('Username') }}"
         formControlName="username"
         #username>
-      <mat-error *ngIf="signupForm.controls.username.hasError('required')">
-        Username is <strong>required</strong>
+      <mat-error *ngIf="signupForm.controls.username.hasError('required')"
+        [innerHTML]="i18n.t('{0} is <strong>required</strong>') | replace : i18n.t('Username')">
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <input type="password" matInput
-        placeholder="Password"
+        placeholder="{{ i18n.t('Password') }}"
         formControlName="password"
         #password>
-      <mat-error *ngIf="signupForm.controls.password.hasError('required')">
-        Password is <strong>required</strong>
+      <mat-error *ngIf="signupForm.controls.password.hasError('required')"
+        [innerHTML]="i18n.t('{0} is <strong>required</strong>') | replace : i18n.t('Password')">
       </mat-error>
     </mat-form-field>
   
     <mat-form-field class="full-width">
       <input type="password" matInput 
-        placeholder="Confirm Password"
+        placeholder="{{ i18n.t('Confirm Password') }}"
         formControlName="confirmPassword"
         #confirmPassword>
-      <mat-error *ngIf="signupForm.controls.confirmPassword.hasError('required')">
-        Confirm Password is <strong>required</strong>
+      <mat-error *ngIf="signupForm.controls.confirmPassword.hasError('required')"
+        [innerHTML]="i18n.t('{0} is <strong>required</strong>') | replace : i18n.t('Confirm Password')">
       </mat-error>
-      <mat-error *ngIf="signupForm.controls.confirmPassword.hasError('MatchPassword')">
-        Password and Confirm Password <strong>do not match</strong>
+      <mat-error *ngIf="signupForm.controls.confirmPassword.hasError('MatchPassword')"
+        [innerHTML]="i18n.t('{0} and {1} <strong>do not match</strong>') | replace : i18n.t('Password') : i18n.t('Confirm Password')">
       </mat-error>
     </mat-form-field>
     
     <mat-form-field class="full-width">
       <input type="text" matInput 
-        placeholder="Email"
+        placeholder="{{ i18n.t('Email') }}"
         formControlName="email"
         #email>
-      <mat-error *ngIf="signupForm.controls.email.hasError('pattern')">
-        Please enter a valid email address
+      <mat-error *ngIf="signupForm.controls.email.hasError('pattern')"
+        [innerHTML]="i18n.t('Please enter a valid email address')">
       </mat-error>
-      <mat-error *ngIf="signupForm.controls.email.hasError('required')">
-        Email is <strong>required</strong>
+      <mat-error *ngIf="signupForm.controls.email.hasError('required')"
+        [innerHTML]="i18n.t('{0} is <strong>required</strong>') | replace : i18n.t('Email')">
       </mat-error>
     </mat-form-field>
     
     <mat-form-field class="full-width">
       <input type="text" matInput 
-        placeholder="Firstname"
+        placeholder="{{ i18n.t('Firstname') }}"
         formControlName="firstname"
         #firstname>
-      <mat-error *ngIf="signupForm.controls.email.hasError('required')">
-        Firstname is <strong>required</strong>
+      <mat-error *ngIf="signupForm.controls.firstname.hasError('required')"
+        [innerHTML]="i18n.t('{0} is <strong>required</strong>') | replace : i18n.t('Firstname')">
       </mat-error>
     </mat-form-field>
     
     <mat-form-field class="full-width">
       <input type="text" matInput
-        placeholder="Lastname"
+        placeholder="{{ i18n.t('Lastname') }}"
         formControlName="lastname"
         #lastname>
-      <mat-error *ngIf="signupForm.controls.email.hasError('required')">
-        lastname is <strong>required</strong>
+      <mat-error *ngIf="signupForm.controls.lastname.hasError('required')"
+        [innerHTML]="i18n.t('{0} is <strong>required</strong>') | replace : i18n.t('Lastname')">
       </mat-error>    
     </mat-form-field>
     
     <button type="submit" mat-raised-button [disabled]="!form.valid"
-      class="full-width" color="primary">Sign up</button>
+      class="full-width" color="primary">{{ i18n.t('Sign up') }}</button>
   </form>
   <div class="spacer"></div>
   <span class="left full-width">
-      <small>Do you have an account?</small> <a mat-button color="accent" routerLink="../signin">Log in</a>
+      <small>{{ i18n.t('Do you have an account?') }}</small> <a mat-button color="accent" routerLink="../signin">{{ i18n.t('Log in') }}</a>
   </span>  
 </mat-card>
 <mat-card class="extend">
-
 </mat-card>
