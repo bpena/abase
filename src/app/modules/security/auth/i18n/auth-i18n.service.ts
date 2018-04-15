@@ -4,7 +4,7 @@ import { EN } from './languages/en';
 import { ES } from '@security/i18n/languages/es';
 
 @Injectable()
-export class SecurityLanguageService {
+export class AuthI18NService {
   private section = 'security';
 
   constructor(private i18n: I18NService) {
