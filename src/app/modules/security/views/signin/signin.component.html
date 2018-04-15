@@ -5,28 +5,31 @@
   <form [formGroup]="signinForm" (ngSubmit)="onSubmit(form)" #form="ngForm">
     <mat-form-field class="full-width">
       <mat-icon matPrefix>person</mat-icon>
-      <input type="text" matInput placeholder="Username"
+      <input type="text" matInput placeholder="{{ i18n.t('Username') }}"
         formControlName="username"
         #username>
     </mat-form-field>
   
     <mat-form-field class="full-width">
       <mat-icon matPrefix>lock</mat-icon>
-      <input type="password" matInput placeholder="Password"
+      <input type="password" matInput placeholder="{{ i18n.t('Password') }}"
         formControlName="password"
         #password>
     </mat-form-field>
 
     <button type="submit" mat-raised-button [disabled]="!form.valid"
-      class="full-width" color="primary">Log In</button>
+      class="full-width" color="primary">{{ i18n.t('Log In') }}</button>
+
+    <button mat-raised-button (click)='changeLanguage()'
+      class="full-width" color="primary">{{ i18n.t('Change Language {0}') | replace : currentLang }}</button>
 
     <span class="left full-width">
-      <a mat-button color="accent" class="full-width" routerLink="../forgot-password">Forgot Password?</a>
+      <a mat-button color="accent" class="full-width" routerLink="../forgot-password">{{ i18n.t('Forgot Password?') }}</a>
     </span>
   </form>
   <div class="spacer"></div>
   <span class="left full-width">
-      <small>Don't have an account?</small> <a mat-button color="accent" routerLink="../signup">Create One</a>
+      <small>{{ i18n.t('Don\'t have an account?') }}</small> <a mat-button color="accent" routerLink="../signup">{{ i18n.t('Create One') }}</a>
   </span>
 
 </mat-card>

@@ -18,10 +18,13 @@ import { ForgotPasswordComponent } from './views/forgot-password/forgot-password
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 import { PostResetPasswordComponent } from './views/post-reset-password/post-reset-password.component';
 import { PostForgotPasswordComponent } from './views/post-forgot-password/post-forgot-password.component';
+import { SecurityLanguageService } from '@security/i18n/security-language.service';
+import { CoreModule } from '@core/core.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    CoreModule,
     FormsModule,
     MatButtonModule,
     MatCardModule,
@@ -53,6 +56,7 @@ import { PostForgotPasswordComponent } from './views/post-forgot-password/post-f
   providers: [
     AuthGuard,
     AuthService,
+    SecurityLanguageService,
     UserService
   ]
 })
