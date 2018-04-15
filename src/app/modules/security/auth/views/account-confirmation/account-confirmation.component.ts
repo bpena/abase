@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@security/services/auth.service';
+import { AuthService } from '@security/auth/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { User } from '@security/model/user';
+import { User } from '@security/user/model/user';
 
 @Component({
   selector: 'app-account-confirmation',

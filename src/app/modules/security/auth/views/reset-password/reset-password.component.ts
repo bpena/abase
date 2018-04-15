@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import { UserService } from '@security/services/user.service';
+import { UserService } from '@security/user/services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PasswordValidation } from '@core/utils/validators/password.validation';
-import { User } from '@security/model/user';
+import { User } from '@security/user/model/user';
 
 @Component({
   selector: 'app-reset-password',

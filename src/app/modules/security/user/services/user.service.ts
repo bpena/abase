@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ConnectionService } from '@core/services/connection.service';
-import { User } from '@security/model/user';
+import { User } from '@security/user/model/user';
 import { Observable } from 'rxjs/Observable';
 import * as urljoin from 'url-join';
 import { environment } from '@environments/environment';
