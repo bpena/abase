@@ -4,6 +4,7 @@ import { AuthService } from '@security/services/auth.service';
 import { Router } from '@angular/router';
 import { User } from '@security/model/user';
 import { Constants } from '@core/utils/constants';
+import { SecurityLanguageService } from '@security/i18n/security-language.service';
 
 @Component({
   selector: 'app-signin',
@@ -12,10 +13,11 @@ import { Constants } from '@core/utils/constants';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-
+  private currentLang = 'en';
   signinForm: FormGroup;
 
   constructor(private authService: AuthService,
+            private i18n: SecurityLanguageService,
             private router: Router) { }
 
   ngOnInit() {
@@ -39,5 +41,10 @@ export class SigninComponent implements OnInit {
           error => console.log('signin ::: ', error)
         );
     }
+  }
+
+  changeLanguage() {
+    this.currentLang = this.currentLang === 'en' ? 'es' : 'en';
+    this.i18n.changeLanguage(this.currentLang);
   }
 }
