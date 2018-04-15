@@ -1,4 +1,4 @@
-import { UserStatus } from '@security/model/user-status.enum';
+import { UserStatus } from '@security/user/model/user-status.enum';
 export class User {
     username: string;
     password?: string;

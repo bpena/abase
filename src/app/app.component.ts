@@ -1,6 +1,6 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { AuthService } from '@security/services/auth.service';
+import { AuthService } from '@security/auth/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -29,5 +29,4 @@ export class AppComponent {
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
-
 }

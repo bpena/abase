@@ -20,9 +20,6 @@
     <button type="submit" mat-raised-button [disabled]="!form.valid"
       class="full-width" color="primary">{{ i18n.t('Log In') }}</button>
 
-    <button mat-raised-button (click)='changeLanguage()'
-      class="full-width" color="primary">{{ i18n.t('Change Language {0}') | replace : currentLang }}</button>
-
     <span class="left full-width">
       <a mat-button color="accent" class="full-width" routerLink="../forgot-password">{{ i18n.t('Forgot Password?') }}</a>
     </span>

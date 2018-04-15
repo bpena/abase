@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
 import { PasswordValidation } from '@core/utils/validators/password.validation';
-import { AuthService } from '@security/services/auth.service';
+import { AuthService } from '@security/auth/services/auth.service';
 import { Router, NavigationExtras } from '@angular/router';
-import { User } from '@security/model/user';
+import { User } from '@security/user/model/user';
 import { Constants } from '@core/utils/constants';
 import { SecurityLanguageService } from '@security/i18n/security-language.service';
 

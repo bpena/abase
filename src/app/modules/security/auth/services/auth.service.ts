@@ -7,8 +7,8 @@ import * as urljoin from 'url-join';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 import { ConnectionService } from '@core/services/connection.service';
-import { User } from '@security/model/user';
-import { UserService } from '@security/services/user.service';
+import { User } from '@security/user/model/user';
+import { UserService } from '@security/user/services/user.service';
 import { Constants } from '@core/utils/constants';
 
 @Injectable()

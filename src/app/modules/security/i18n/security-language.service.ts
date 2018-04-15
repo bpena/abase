@@ -8,13 +8,13 @@ export class SecurityLanguageService {
   private section = 'security';
 
   constructor(private i18n: I18NService) {
-    this.i18n.load(this.section, EN.labels);
+    this.i18n.getLanguage().subscribe(language => this.changeLanguage(language, this));
   }
 
-  changeLanguage(newLanguage: string) {
+  changeLanguage(newLanguage: string, that: any) {
     switch(newLanguage.toLowerCase()) {
-      case 'en': this.i18n.load(this.section, EN.labels); break;
-      case 'es': this.i18n.load(this.section, ES.labels); break;
+      case 'en': that.i18n.load(that.section, EN.labels); break;
+      case 'es': that.i18n.load(that.section, ES.labels); break;
     }
   }
 

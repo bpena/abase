@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import { AuthService } from '@security/services/auth.service';
+import { AuthService } from '@security/auth/services/auth.service';
 import { Router } from '@angular/router';
-import { User } from '@security/model/user';
+import { User } from '@security/user/model/user';
 import { Constants } from '@core/utils/constants';
 import { SecurityLanguageService } from '@security/i18n/security-language.service';
 
@@ -13,7 +13,6 @@ import { SecurityLanguageService } from '@security/i18n/security-language.servic
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-  private currentLang = 'en';
   signinForm: FormGroup;
 
   constructor(private authService: AuthService,
@@ -41,10 +40,5 @@ export class SigninComponent implements OnInit {
           error => console.log('signin ::: ', error)
         );
     }
-  }
-
-  changeLanguage() {
-    this.currentLang = this.currentLang === 'en' ? 'es' : 'en';
-    this.i18n.changeLanguage(this.currentLang);
   }
 }
