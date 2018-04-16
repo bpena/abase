@@ -18,7 +18,6 @@ export class SelectLanguageComponent implements OnInit {
   }
 
   changeLanguage() {
-    console.log(this.currentLang);
     this.i18n.changeLanguage(this.currentLang.toLocaleLowerCase() === 'en' ? 'es' : 'en');
   }
 }

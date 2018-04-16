@@ -3,10 +3,10 @@
     <img src="/assets/images/logo.png" alt="bbase">
   </div>
   
-  <h2>Hello <span color="primary">{{ user?.displayname }}</span></h2>
+  <h2 [innerHTML]="i18n.t('Hi {0}') | replace : user.displayname"></h2>
   <hr>
-  <h3>Thanks for registering!</h3>
-  <h4>Your account is not active yet. An activation link has been sent to <span color="primary">{{ user?.email }}</span>, along with instructions to activate your account.</h4>
+  <h3>{{ i18n.t('Thanks for registering!') }}</h3>
+  <h4 [innerHTML]="i18n.t('Your account is not active yet. An activation link has been sent to {0}, along with instructions to activate your account.') | replace : user.email"></h4>
 
   <div class="spacer"></div>
 </mat-card>

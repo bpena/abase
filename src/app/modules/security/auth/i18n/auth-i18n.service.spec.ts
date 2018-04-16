@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { SecurityLanguageService } from './security-language.service';
+import { AuthI18NService } from './auth-i18n.service';
 
 describe('ConstantsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SecurityLanguageService]
+      providers: [AuthI18NService]
     });
   });
 
-  it('should be created', inject([SecurityLanguageService], (service: SecurityLanguageService) => {
+  it('should be created', inject([AuthI18NService], (service: AuthI18NService) => {
     expect(service).toBeTruthy();
   }));
 });

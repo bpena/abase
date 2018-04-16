@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { I18NService } from '@core/i18n/service/i18n.service';
-import { EN } from './languages/en';
-import { ES } from '@security/i18n/languages/es';
+import { EN } from '@security/auth/i18n/languages/en';
+import { ES } from '@security/auth/i18n/languages/es';
 
 @Injectable()
-export class SecurityLanguageService {
-  private section = 'security';
+export class AuthI18NService {
+  private section = 'auth';
 
   constructor(private i18n: I18NService) {
     this.i18n.getLanguage().subscribe(language => this.changeLanguage(language, this));
