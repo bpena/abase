@@ -28,7 +28,11 @@ export class ES {
         ['{0} will send password reset instructions to the email address associated.', '<span color="accent"><b>{0}</b></span> enviará las instrucciones de restablecimiento de contraseña a la dirección de correo electrónico asociada.'],
         ['Reset Password', 'Restablecer Contraseña'],
         ['We are sorry. This was unexpected.', 'Lo sentimos. Esto fue inesperado.'],
-        ['Go home', 'Inicio']
+        ['Go home', 'Inicio'],
+        ['Go back', 'Volver'],
+        ['Password recovery email', 'Correo electrónico de recuperación de contraseña'],
+        ['An email has been sent to {0} with further instructions on how to reset your password.', 'Se ha enviado un correo electrónico a <span color="primary">{0}</span> con más instrucciones sobre cómo restablecer su contraseña.'],
+        ['Please complete this process within the next 25 minutes. Otherwise, your reset token will expire, and you will be asked to restart the password reset process.', 'Por favor complete este proceso dentro de los próximos 25 minutos. De lo contrario, su token de restablecimiento caducará, y se le pedirá que reinicie el proceso de restablecimiento de contraseña.']
 
     ]);
 }
