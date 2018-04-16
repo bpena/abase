@@ -1,10 +1,12 @@
 export class ES {
     public static labels: Map<string, string> = new Map<string, string>([
+        ['appName', 'bbase'],
         ['Log in', 'Iniciar Sesión'],
         ['Log In', 'Iniciar Sesión'],
         ['Username', 'Usuario'],
         ['Password', 'Contraseña'],
         ['Forgot Password?', '¿Olvidó su contraseña?'],
+        ['Forgot your password?', '¿Olvidó su contraseña?'],
         ['Don\'t have an account?', '¿No tienes cuenta?'],
         ['Create One', 'Crea una.'],
         ['Sign in', 'Entrar'],
@@ -22,7 +24,9 @@ export class ES {
         ['There is a small problem', 'Hay un pequeño problema'],
         ['Invalid activation link', 'Este enlace de activación no es válido. ¿Quizás ya lo usaste? '],
         ['Hi {0}', 'Hola <span color="primary">{0}</span>'],
-        ['Your account is already activated.', 'Su cuenta ya está activada.']
+        ['Your account is already activated.', 'Su cuenta ya está activada.'],
+        ['{0} will send password reset instructions to the email address associated.', '<span color="accent"><b>{0}</b></span> enviará las instrucciones de restablecimiento de contraseña a la dirección de correo electrónico asociada.'],
+        ['Reset Password', 'Restablecer Contraseña']
 
     ]);
 }

@@ -1,10 +1,12 @@
 export class EN {
     public static labels: Map<string, string> = new Map<string, string>([
+        ['appName', 'bbase'],
         ['Log in', 'Log In'],
         ['Log In', 'Log In'],
         ['Username', 'Username'],
         ['Password', 'Password'],
         ['Forgot Password?', 'Forgot Password?'],
+        ['Forgot your password?', 'Forgot your password?'],
         ['Don\'t have an account?', 'Don\'t have an account?'],
         ['Create One', 'Create One'],
         ['Sign in', 'Sign in'],
@@ -22,5 +24,7 @@ export class EN {
         ['Invalid activation link', 'This activation link isn\'t valid. Perhaps you already used it?'],
         ['Hi {0}', 'Hi <span color="primary">{0}</span>'],
         ['Your account is already activated.', 'Your account is already activated.'],
+        ['{0} will send password reset instructions to the email address associated.', '<span color="accent"><b>{0}</b></span> will send password reset instructions to the email address associated.'],
+        ['Reset Password', 'Reset Password']
     ])
 }
