@@ -10,7 +10,7 @@
   </div>
   
   <ng-template #no_error>
-    <h2 [innerHTML]="i18n.t('Hi {0}') | i18n : 'auth' : user?.displayname"></h2>
+    <h2 [innerHTML]="i18n.t('Hi {0}') | replace : user?.displayname"></h2>
     <hr>
     <h3>{{ i18n.t('Account Activation') }}</h3>
     <h4>{{ i18n.t('Your account is already activated.') }} <a mat-button color="accent" routerLink="/security/signin">{{ i18n.t('Log in') }}</a></h4>
