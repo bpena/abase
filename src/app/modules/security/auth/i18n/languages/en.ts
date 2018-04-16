@@ -25,6 +25,8 @@ export class EN {
         ['Hi {0}', 'Hi <span color="primary">{0}</span>'],
         ['Your account is already activated.', 'Your account is already activated.'],
         ['{0} will send password reset instructions to the email address associated.', '<span color="accent"><b>{0}</b></span> will send password reset instructions to the email address associated.'],
-        ['Reset Password', 'Reset Password']
+        ['Reset Password', 'Reset Password'],
+        ['We are sorry. This was unexpected.', 'We are sorry. This was unexpected.'],
+        ['Go home', 'Go home']
     ])
 }

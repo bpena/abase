@@ -26,7 +26,9 @@ export class ES {
         ['Hi {0}', 'Hola <span color="primary">{0}</span>'],
         ['Your account is already activated.', 'Su cuenta ya está activada.'],
         ['{0} will send password reset instructions to the email address associated.', '<span color="accent"><b>{0}</b></span> enviará las instrucciones de restablecimiento de contraseña a la dirección de correo electrónico asociada.'],
-        ['Reset Password', 'Restablecer Contraseña']
+        ['Reset Password', 'Restablecer Contraseña'],
+        ['We are sorry. This was unexpected.', 'Lo sentimos. Esto fue inesperado.'],
+        ['Go home', 'Inicio']
 
     ]);
 }
