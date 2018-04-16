@@ -5,7 +5,7 @@ import { AuthService } from '@security/auth/services/auth.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { User } from '@security/user/model/user';
 import { Constants } from '@core/utils/constants';
-import { SecurityLanguageService } from '@security/i18n/security-language.service';
+import { AuthI18NService } from '@security/auth/i18n/auth-i18n.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
 
   constructor(private authService: AuthService,
-            private i18n: SecurityLanguageService,
+            private i18n: AuthI18NService,
             private router: Router) { }
 
   ngOnInit() {

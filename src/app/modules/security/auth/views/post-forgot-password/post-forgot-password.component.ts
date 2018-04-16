@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthI18NService } from '@security/auth/i18n/auth-i18n.service';
 
 @Component({
   selector: 'app-post-forgot-password',
@@ -12,13 +13,12 @@ export class PostForgotPasswordComponent implements OnInit {
   private email: string;
   private errorMessage: string;
 
-  constructor(private activatedRouter: ActivatedRoute) {
-  }
+  constructor(private activatedRouter: ActivatedRoute,
+            private i18n: AuthI18NService) { }
 
   ngOnInit() {
     this.hasError = JSON.parse(this.activatedRouter.snapshot.queryParams.hasError);
     this.email = this.activatedRouter.snapshot.queryParams.email;
     this.errorMessage = this.activatedRouter.snapshot.queryParams.errorMessage;
-    console.log(this.activatedRouter.snapshot.queryParams)
   }
 }

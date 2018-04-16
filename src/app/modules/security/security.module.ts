@@ -18,8 +18,8 @@ import { ForgotPasswordComponent } from '@security/auth/views/forgot-password/fo
 import { ResetPasswordComponent } from '@security/auth/views/reset-password/reset-password.component';
 import { PostResetPasswordComponent } from '@security/auth/views/post-reset-password/post-reset-password.component';
 import { PostForgotPasswordComponent } from '@security/auth/views/post-forgot-password/post-forgot-password.component';
-import { SecurityLanguageService } from '@security/i18n/security-language.service';
 import { CoreModule } from '@core/core.module';
+import { AuthI18NService } from '@security/auth/i18n/auth-i18n.service';
 
 @NgModule({
   imports: [
@@ -55,8 +55,8 @@ import { CoreModule } from '@core/core.module';
   ],
   providers: [
     AuthGuard,
+    AuthI18NService,
     AuthService,
-    SecurityLanguageService,
     UserService
   ]
 })

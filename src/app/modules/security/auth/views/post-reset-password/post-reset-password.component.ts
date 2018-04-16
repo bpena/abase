@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthI18NService } from '@security/auth/i18n/auth-i18n.service';
 
 @Component({
   selector: 'app-post-reset-password',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostResetPasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private i18n: AuthI18NService) { }
 
   ngOnInit() {
   }

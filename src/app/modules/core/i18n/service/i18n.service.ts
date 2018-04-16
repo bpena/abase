@@ -9,6 +9,7 @@ export class I18NService {
   private attributeLabels: any = {};
 
   constructor() {
+    this.language = localStorage.getItem('language') || navigator.language.split('-')[0];
     this.language$ = new BehaviorSubject(this.language);
   }
 
@@ -18,6 +19,7 @@ export class I18NService {
 
   changeLanguage(newLanguage: string) {
     this.language = newLanguage;
+    localStorage.setItem('language', this.language);
     this.language$.next(this.language);
   }
 
