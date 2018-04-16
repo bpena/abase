@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '@security/user/model/user';
 import { ActivatedRoute } from '@angular/router';
+import { AuthI18NService } from '@security/auth/i18n/auth-i18n.service';
 
 @Component({
   selector: 'app-post-signup',
@@ -12,7 +13,8 @@ export class PostSignupComponent implements OnInit {
   private hasError = false;
   private user: User;
 
-  constructor(private activatedRouter: ActivatedRoute) {
+  constructor(private activatedRouter: ActivatedRoute,
+            private i18n: AuthI18NService) {
   }
 
   ngOnInit() {

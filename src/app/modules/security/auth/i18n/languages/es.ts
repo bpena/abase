@@ -36,6 +36,8 @@ export class ES {
         ['Congratulations!', '¡Felicitaciones!'],
         ['You\'ve successfully changed your password.', 'Has cambiado tu contraseña con éxito.'],
         ['You can now', 'Ahora puedes'],
-        ['using your new password.', 'utilizando tu nueva contraseña.']
+        ['using your new password.', 'utilizando tu nueva contraseña.'],
+        ['Thanks for registering!', '¡Gracias por registrarte!'],
+        ['Your account is not active yet. An activation link has been sent to {0}, along with instructions to activate your account.', 'Su cuenta no está activa todavía Se ha enviado un enlace de activación a <span color="primary">{0}</span>, junto con instrucciones para activar su cuenta.']
     ]);
 }

@@ -35,6 +35,8 @@ export class EN {
         ['Congratulations!', 'Congratulations!'],
         ['You\'ve successfully changed your password.', 'You\'ve successfully changed your password.'],
         ['You can now', 'You can now'],
-        ['using your new password.', 'using your new password.']
+        ['using your new password.', 'using your new password.'],
+        ['Thanks for registering!', 'Thanks for registering!'],
+        ['Your account is not active yet. An activation link has been sent to {0}, along with instructions to activate your account.', 'Your account is not active yet. An activation link has been sent to <span color="primary">{0}</span>, along with instructions to activate your account.']
     ])
 }
