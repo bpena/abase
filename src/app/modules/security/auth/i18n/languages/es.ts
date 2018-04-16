@@ -23,6 +23,7 @@ export class ES {
         ['Account Activation', 'Activación de cuenta'],
         ['There is a small problem', 'Hay un pequeño problema'],
         ['Invalid activation link', 'Este enlace de activación no es válido. ¿Quizás ya lo usaste? '],
+        ['Invalid link', 'Este enlace no es válido. ¿Quizás ya lo usaste? '],
         ['Hi {0}', 'Hola <span color="primary">{0}</span>'],
         ['Your account is already activated.', 'Su cuenta ya está activada.'],
         ['{0} will send password reset instructions to the email address associated.', '<span color="accent"><b>{0}</b></span> enviará las instrucciones de restablecimiento de contraseña a la dirección de correo electrónico asociada.'],
@@ -38,6 +39,7 @@ export class ES {
         ['You can now', 'Ahora puedes'],
         ['using your new password.', 'utilizando tu nueva contraseña.'],
         ['Thanks for registering!', '¡Gracias por registrarte!'],
-        ['Your account is not active yet. An activation link has been sent to {0}, along with instructions to activate your account.', 'Su cuenta no está activa todavía Se ha enviado un enlace de activación a <span color="primary">{0}</span>, junto con instrucciones para activar su cuenta.']
+        ['Your account is not active yet. An activation link has been sent to {0}, along with instructions to activate your account.', 'Su cuenta no está activa todavía Se ha enviado un enlace de activación a <span color="primary">{0}</span>, junto con instrucciones para activar su cuenta.'],
+        ['Send', 'Enviar']
     ]);
 }

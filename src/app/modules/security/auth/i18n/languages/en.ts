@@ -22,6 +22,7 @@ export class EN {
         ['Account Activation', 'Account Activation'],
         ['There is a small problem', 'There is a small problem'],
         ['Invalid activation link', 'This activation link isn\'t valid. Perhaps you already used it?'],
+        ['Invalid link', 'This link isn\'t valid. Perhaps you already used it?'],
         ['Hi {0}', 'Hi <span color="primary">{0}</span>'],
         ['Your account is already activated.', 'Your account is already activated.'],
         ['{0} will send password reset instructions to the email address associated.', '<span color="accent"><b>{0}</b></span> will send password reset instructions to the email address associated.'],
@@ -37,6 +38,7 @@ export class EN {
         ['You can now', 'You can now'],
         ['using your new password.', 'using your new password.'],
         ['Thanks for registering!', 'Thanks for registering!'],
-        ['Your account is not active yet. An activation link has been sent to {0}, along with instructions to activate your account.', 'Your account is not active yet. An activation link has been sent to <span color="primary">{0}</span>, along with instructions to activate your account.']
+        ['Your account is not active yet. An activation link has been sent to {0}, along with instructions to activate your account.', 'Your account is not active yet. An activation link has been sent to <span color="primary">{0}</span>, along with instructions to activate your account.'],
+        ['Send', 'Send']
     ])
 }

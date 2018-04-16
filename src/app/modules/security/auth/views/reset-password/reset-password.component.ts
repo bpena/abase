@@ -4,6 +4,7 @@ import { UserService } from '@security/user/services/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PasswordValidation } from '@core/utils/validators/password.validation';
 import { User } from '@security/user/model/user';
+import { AuthI18NService } from '@security/auth/i18n/auth-i18n.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -19,6 +20,7 @@ export class ResetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup;
 
   constructor(private activatedRoute: ActivatedRoute,
+            private i18n: AuthI18NService,
             private router: Router,
             private userSservice: UserService) { }
 
