@@ -31,6 +31,10 @@ export class EN {
         ['Go back', 'Go back'],
         ['Password recovery email', 'Password recovery email'],
         ['An email has been sent to {0} with further instructions on how to reset your password.', 'An email has been sent to <span color="primary">{0}</span> with further instructions on how to reset your password.'],
-        ['Please complete this process within the next 25 minutes. Otherwise, your reset token will expire, and you will be asked to restart the password reset process.', 'Please complete this process within the next 25 minutes. Otherwise, your reset token will expire, and you will be asked to restart the password reset process.']
+        ['Please complete this process within the next 25 minutes. Otherwise, your reset token will expire, and you will be asked to restart the password reset process.', 'Please complete this process within the next 25 minutes. Otherwise, your reset token will expire, and you will be asked to restart the password reset process.'],
+        ['Congratulations!', 'Congratulations!'],
+        ['You\'ve successfully changed your password.', 'You\'ve successfully changed your password.'],
+        ['You can now', 'You can now'],
+        ['using your new password.', 'using your new password.']
     ])
 }

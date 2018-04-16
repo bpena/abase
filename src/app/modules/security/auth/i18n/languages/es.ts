@@ -32,7 +32,10 @@ export class ES {
         ['Go back', 'Volver'],
         ['Password recovery email', 'Correo electrónico de recuperación de contraseña'],
         ['An email has been sent to {0} with further instructions on how to reset your password.', 'Se ha enviado un correo electrónico a <span color="primary">{0}</span> con más instrucciones sobre cómo restablecer su contraseña.'],
-        ['Please complete this process within the next 25 minutes. Otherwise, your reset token will expire, and you will be asked to restart the password reset process.', 'Por favor complete este proceso dentro de los próximos 25 minutos. De lo contrario, su token de restablecimiento caducará, y se le pedirá que reinicie el proceso de restablecimiento de contraseña.']
-
+        ['Please complete this process within the next 25 minutes. Otherwise, your reset token will expire, and you will be asked to restart the password reset process.', 'Por favor complete este proceso dentro de los próximos 25 minutos. De lo contrario, su token de restablecimiento caducará, y se le pedirá que reinicie el proceso de restablecimiento de contraseña.'],
+        ['Congratulations!', '¡Felicitaciones!'],
+        ['You\'ve successfully changed your password.', 'Has cambiado tu contraseña con éxito.'],
+        ['You can now', 'Ahora puedes'],
+        ['using your new password.', 'utilizando tu nueva contraseña.']
     ]);
 }
